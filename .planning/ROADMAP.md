@@ -19,7 +19,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 1: Infrastructure** - Docker Compose for all infrastructure services (Complete)
 - [x] **Phase 2: Backend Setup** - Configure Spring Boot for local environment (Complete)
 - [x] **Phase 3: Diarization Rewrite** - Replace AssemblyAI with WhisperX + pyannote (Complete)
-- [ ] **Phase 4: Chat Service** - Configure for remote Ollama server
+- [x] **Phase 4: Chat Service** - Configure for remote Ollama server (Complete)
 - [ ] **Phase 5: Frontend Setup** - Configure Vue/Quasar to point to localhost
 - [ ] **Phase 6: Integration Testing** - Verify end-to-end workflow
 
@@ -64,7 +64,7 @@ Plans:
 **Plans**: TBD
 
 Plans:
-- [ ] 04-01: Configure OLLAMA_BASE_URL for remote server and verify connectivity
+- [x] 04-01: Configure OLLAMA_BASE_URL for remote server and verify connectivity
 
 ### Phase 5: Frontend Setup
 **Goal**: Configure Vue/Quasar frontend to point to localhost backend and run dev server
@@ -95,6 +95,6 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6
 | 1. Infrastructure | 2/2 | Complete | 2026-01-22 |
 | 2. Backend Setup | 1/1 | Complete | 2026-01-22 |
 | 3. Diarization Rewrite | 3/3 | Complete | 2026-01-22 |
-| 4. Chat Service | 0/1 | Not started | - |
+| 4. Chat Service | 1/1 | Complete | 2026-01-22 |
 | 5. Frontend Setup | 0/1 | Not started | - |
 | 6. Integration Testing | 0/1 | Not started | - |
