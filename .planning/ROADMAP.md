@@ -16,7 +16,7 @@ None
 
 Decimal phases appear between their surrounding integers in numeric order.
 
-- [ ] **Phase 1: Infrastructure** - Docker Compose for all infrastructure services
+- [ ] **Phase 1: Infrastructure** - Docker Compose for all infrastructure services (In progress)
 - [ ] **Phase 2: Backend Setup** - Configure Spring Boot for local environment
 - [ ] **Phase 3: Diarization Rewrite** - Replace AssemblyAI with WhisperX + pyannote
 - [ ] **Phase 4: Chat Service** - Configure for remote Ollama server
@@ -33,7 +33,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 **Plans**: TBD
 
 Plans:
-- [ ] 01-01: Set up Docker Compose with all infrastructure services
+- [x] 01-01: Set up Docker Compose with all infrastructure services
 - [ ] 01-02: Verify services are accessible and healthy
 
 ### Phase 2: Backend Setup
@@ -93,7 +93,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Infrastructure | 0/2 | Not started | - |
+| 1. Infrastructure | 1/2 | In progress | - |
 | 2. Backend Setup | 0/2 | Not started | - |
 | 3. Diarization Rewrite | 0/3 | Not started | - |
 | 4. Chat Service | 0/1 | Not started | - |
