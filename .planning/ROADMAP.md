@@ -17,7 +17,7 @@ None
 Decimal phases appear between their surrounding integers in numeric order.
 
 - [x] **Phase 1: Infrastructure** - Docker Compose for all infrastructure services (Complete)
-- [ ] **Phase 2: Backend Setup** - Configure Spring Boot for local environment
+- [x] **Phase 2: Backend Setup** - Configure Spring Boot for local environment (Complete)
 - [ ] **Phase 3: Diarization Rewrite** - Replace AssemblyAI with WhisperX + pyannote
 - [ ] **Phase 4: Chat Service** - Configure for remote Ollama server
 - [ ] **Phase 5: Frontend Setup** - Configure Vue/Quasar to point to localhost
@@ -43,7 +43,7 @@ Plans:
 **Plans**: 1
 
 Plans:
-- [ ] 02-01: Create .env, build and run backend, verify connectivity
+- [x] 02-01: Create .env, build and run backend, verify connectivity
 
 ### Phase 3: Diarization Rewrite
 **Goal**: Replace AssemblyAI API with WhisperX + pyannote for fully local speaker diarization (CPU-based, batch processing)
@@ -93,7 +93,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Infrastructure | 2/2 | Complete | 2026-01-22 |
-| 2. Backend Setup | 0/1 | Not started | - |
+| 2. Backend Setup | 1/1 | Complete | 2026-01-22 |
 | 3. Diarization Rewrite | 0/3 | Not started | - |
 | 4. Chat Service | 0/1 | Not started | - |
 | 5. Frontend Setup | 0/1 | Not started | - |
