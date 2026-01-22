@@ -53,7 +53,7 @@ Plans:
 **Plans**: TBD
 
 Plans:
-- [ ] 03-01: Research WhisperX + pyannote APIs and model requirements
+- [x] 03-01: Implement WhisperXDiarizationService class
 - [ ] 03-02: Implement WhisperXPyannotteDiarizationService class
 - [ ] 03-03: Test diarization with sample audio files
 
@@ -94,7 +94,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6
 |-------|----------------|--------|-----------|
 | 1. Infrastructure | 2/2 | Complete | 2026-01-22 |
 | 2. Backend Setup | 1/1 | Complete | 2026-01-22 |
-| 3. Diarization Rewrite | 0/3 | Not started | - |
+| 3. Diarization Rewrite | 1/3 | In progress | - |
 | 4. Chat Service | 0/1 | Not started | - |
 | 5. Frontend Setup | 0/1 | Not started | - |
 | 6. Integration Testing | 0/1 | Not started | - |
