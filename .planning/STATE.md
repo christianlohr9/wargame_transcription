@@ -10,27 +10,27 @@ See: .planning/PROJECT.md (updated 2026-01-22)
 ## Current Position
 
 Phase: 1 of 6 (Infrastructure)
-Plan: 1 of 2 in current phase
-Status: In progress
-Last activity: 2026-01-22 — Completed 01-01-PLAN.md
+Plan: 2 of 2 in current phase
+Status: Phase complete
+Last activity: 2026-01-22 — Completed 01-02-PLAN.md
 
-Progress: █░░░░░░░░░ 10%
+Progress: ██░░░░░░░░ 20%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 1
-- Average duration: 3 min
-- Total execution time: 0.05 hours
+- Total plans completed: 2
+- Average duration: 5.5 min
+- Total execution time: 0.18 hours
 
 **By Phase:**
 
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
-| 01-infrastructure | 1 | 3 min | 3 min |
+| 01-infrastructure | 2 | 11 min | 5.5 min |
 
 **Recent Trend:**
-- Last 5 plans: 01-01 (3 min)
+- Last 5 plans: 01-01 (3 min), 01-02 (8 min)
 - Trend: —
 
 ## Accumulated Context
@@ -43,6 +43,7 @@ Recent decisions affecting current work:
 - Remote Ollama for chat (offloads RAM, allows larger models)
 - WhisperX + pyannote for diarization (no API dependency, CPU-only acceptable)
 - Batch diarization processing (CPU-only is slow, overnight jobs acceptable)
+- Conductor UI on port 5001 (macOS AirPlay conflict on port 5000)
 
 ### Deferred Issues
 
@@ -54,6 +55,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-01-22T11:37:46Z
-Stopped at: Completed 01-01-PLAN.md
+Last session: 2026-01-22T11:49:00Z
+Stopped at: Completed 01-02-PLAN.md (Phase 1 complete)
 Resume file: None
