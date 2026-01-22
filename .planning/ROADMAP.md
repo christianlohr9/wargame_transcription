@@ -40,11 +40,10 @@ Plans:
 **Goal**: Configure and run Spring Boot backend with local environment variables pointing to Docker services
 **Depends on**: Phase 1
 **Research**: Unlikely (existing Spring Boot app, just configuration)
-**Plans**: TBD
+**Plans**: 1
 
 Plans:
-- [ ] 02-01: Create local .env and configure application properties
-- [ ] 02-02: Run backend and verify MongoDB/Conductor connectivity
+- [ ] 02-01: Create .env, build and run backend, verify connectivity
 
 ### Phase 3: Diarization Rewrite
 **Goal**: Replace AssemblyAI API with WhisperX + pyannote for fully local speaker diarization (CPU-based, batch processing)
@@ -94,7 +93,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Infrastructure | 2/2 | Complete | 2026-01-22 |
-| 2. Backend Setup | 0/2 | Not started | - |
+| 2. Backend Setup | 0/1 | Not started | - |
 | 3. Diarization Rewrite | 0/3 | Not started | - |
 | 4. Chat Service | 0/1 | Not started | - |
 | 5. Frontend Setup | 0/1 | Not started | - |
