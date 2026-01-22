@@ -54,7 +54,7 @@ Plans:
 
 Plans:
 - [x] 03-01: Implement WhisperXDiarizationService class
-- [ ] 03-02: Implement WhisperXPyannotteDiarizationService class
+- [x] 03-02: Service setup and verification with PyTorch 2.8 compat
 - [ ] 03-03: Test diarization with sample audio files
 
 ### Phase 4: Chat Service
@@ -94,7 +94,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6
 |-------|----------------|--------|-----------|
 | 1. Infrastructure | 2/2 | Complete | 2026-01-22 |
 | 2. Backend Setup | 1/1 | Complete | 2026-01-22 |
-| 3. Diarization Rewrite | 1/3 | In progress | - |
+| 3. Diarization Rewrite | 2/3 | In progress | - |
 | 4. Chat Service | 0/1 | Not started | - |
 | 5. Frontend Setup | 0/1 | Not started | - |
 | 6. Integration Testing | 0/1 | Not started | - |

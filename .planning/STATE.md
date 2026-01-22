@@ -10,18 +10,18 @@ See: .planning/PROJECT.md (updated 2026-01-22)
 ## Current Position
 
 Phase: 3 of 6 (Diarization Rewrite)
-Plan: 1 of 3 in current phase
+Plan: 2 of 3 in current phase
 Status: In progress
-Last activity: 2026-01-22 — Completed 03-01-PLAN.md
+Last activity: 2026-01-22 — Completed 03-02-PLAN.md
 
-Progress: ████░░░░░░ 40%
+Progress: █████░░░░░ 50%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 4
-- Average duration: 6 min
-- Total execution time: 0.38 hours
+- Total plans completed: 5
+- Average duration: 10 min
+- Total execution time: 0.83 hours
 
 **By Phase:**
 
@@ -29,10 +29,10 @@ Progress: ████░░░░░░ 40%
 |-------|-------|-------|----------|
 | 01-infrastructure | 2 | 11 min | 5.5 min |
 | 02-backend-setup | 1 | 10 min | 10 min |
-| 03-diarization-rewrite | 1 | 2 min | 2 min |
+| 03-diarization-rewrite | 2 | 29 min | 14.5 min |
 
 **Recent Trend:**
-- Last 5 plans: 01-01 (3 min), 01-02 (8 min), 02-01 (10 min), 03-01 (2 min)
+- Last 5 plans: 01-02 (8 min), 02-01 (10 min), 03-01 (2 min), 03-02 (27 min)
 - Trend: —
 
 ## Accumulated Context
@@ -48,6 +48,8 @@ Recent decisions affecting current work:
 - Conductor UI on port 5001 (macOS AirPlay conflict on port 5000)
 - Backend on port 8081 (avoid Conductor API conflict on 8080)
 - Java 21 via Homebrew openjdk@21 (system Java not configured)
+- Diarization service on port 8082 (avoid Conductor 8080, backend 8081)
+- PyTorch weights_only patch via monkey-patch (PyTorch 2.6+ compat for pyannote)
 
 ### Deferred Issues
 
@@ -59,6 +61,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-01-22T12:27:04Z
-Stopped at: Completed 03-01-PLAN.md
+Last session: 2026-01-22T13:26:35Z
+Stopped at: Completed 03-02-PLAN.md
 Resume file: None
