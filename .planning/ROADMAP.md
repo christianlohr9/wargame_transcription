@@ -21,7 +21,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 3: Diarization Rewrite** - Replace AssemblyAI with WhisperX + pyannote (Complete)
 - [x] **Phase 4: Chat Service** - Configure for remote Ollama server (Complete)
 - [x] **Phase 5: Frontend Setup** - Configure Vue/Quasar to point to localhost (Complete)
-- [ ] **Phase 6: Integration Testing** - Verify end-to-end workflow
+- [x] **Phase 6: Integration Testing** - Verify end-to-end workflow (Complete)
 
 ## Phase Details
 
@@ -82,7 +82,7 @@ Plans:
 **Plans**: TBD
 
 Plans:
-- [ ] 06-01: Test complete workflow with sample wargame audio
+- [x] 06-01: Test complete workflow with sample wargame audio
 
 ## Progress
 
@@ -97,4 +97,4 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6
 | 3. Diarization Rewrite | 3/3 | Complete | 2026-01-22 |
 | 4. Chat Service | 1/1 | Complete | 2026-01-22 |
 | 5. Frontend Setup | 1/1 | Complete | 2026-01-22 |
-| 6. Integration Testing | 0/1 | Not started | - |
+| 6. Integration Testing | 1/1 | Complete | 2026-01-25 |
