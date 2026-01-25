@@ -22,7 +22,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 4: Chat Service** - Configure for remote Ollama server (Complete)
 - [x] **Phase 5: Frontend Setup** - Configure Vue/Quasar to point to localhost (Complete)
 - [x] **Phase 6: Integration Testing** - Verify end-to-end workflow (Complete)
-- [ ] **Phase 7: Diarization Service** - diarization-service
+- [x] **Phase 7: Diarization Service** - Fix data pipeline for speakers and summaries (Complete)
 
 ## Phase Details
 
@@ -92,7 +92,7 @@ Plans:
 **Plans**: 1 plan
 
 Plans:
-- [ ] 07-01: Diagnose and fix data pipeline (speaker names + summarization)
+- [x] 07-01: Diagnose and fix data pipeline (speaker names + summarization)
 
 ## Progress
 
@@ -108,4 +108,4 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7
 | 4. Chat Service | 1/1 | Complete | 2026-01-22 |
 | 5. Frontend Setup | 1/1 | Complete | 2026-01-22 |
 | 6. Integration Testing | 1/1 | Complete | 2026-01-25 |
-| 7. Diarization Service | 0/1 | Planned | - |
+| 7. Diarization Service | 1/1 | Complete | 2026-01-25 |
