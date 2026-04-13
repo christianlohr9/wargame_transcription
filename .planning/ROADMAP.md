@@ -51,7 +51,7 @@ Plans:
 **Plans**: TBD
 
 Plans:
-- [ ] 09-01: TBD (run /gsd:plan-phase 9 to break down)
+- [x] 09-01: Hybrid pipeline integration (distil-large-v3.5 + pyannote + WhisperX alignment)
 
 #### Phase 10: Modular Pipeline
 
@@ -95,7 +95,7 @@ Plans:
 | 6. Integration Testing | v1.0 | 1/1 | Complete | 2026-01-25 |
 | 7. Diarization Service | v1.0 | 1/1 | Complete | 2026-01-25 |
 | 8. Model Research | v2.0 | 2/2 | Complete | 2026-04-13 |
-| 9. Model Integration | v2.0 | 0/? | Not started | - |
+| 9. Model Integration | v2.0 | 1/1 | Complete | 2026-04-13 |
 | 10. Modular Pipeline | v2.0 | 0/? | Not started | - |
 | 11. Frontend Adaptation | v2.0 | 0/? | Not started | - |
 | 12. Integration Testing | v2.0 | 0/? | Not started | - |

@@ -9,12 +9,12 @@ See: .planning/PROJECT.md (updated 2026-01-25)
 
 ## Current Position
 
-Phase: 8 of 12 (model-research) — COMPLETE
-Plan: 02 complete (diarization benchmarks & recommendations)
-Status: Phase 8 complete, ready for Phase 9
-Last activity: 2026-04-13 — Model research complete, recommendations published
+Phase: 9 of 12 (model-integration) — COMPLETE
+Plan: 01 complete (hybrid pipeline integration)
+Status: Phase 9 complete, ready for Phase 10
+Last activity: 2026-04-13 — Hybrid pipeline with distil-large-v3.5 integrated and verified
 
-Progress: ████████████░░░░░░░░ 80% (v2.0 Phase 8 complete)
+Progress: █████████████░░░░░░░ 85% (v2.0 Phase 9 complete)
 
 ## Performance Metrics
 
@@ -47,6 +47,8 @@ All v1.0 decisions logged in PROJECT.md Key Decisions table with outcomes marked
 - [Phase 08, Plan 02]: pyannote retained for diarization — diarize library over-segments (8 speakers on 3-speaker audio)
 - [Phase 08, Plan 02]: Hybrid pipeline recommended: faster-whisper transcription + pyannote diarization + WhisperX alignment
 - [Phase 08, Plan 02]: Full recommendations in 08-RECOMMENDATION.md
+- [Phase 09, Plan 01]: distil-large-v3.5 chosen over v3 — 889MB vs 1682MB memory, 0.289 vs 0.295 RTF, better text quality
+- [Phase 09, Plan 01]: Conductor registration made graceful — services start standalone when orchestrator unavailable
 
 ### Deferred Issues
 
@@ -64,5 +66,5 @@ None.
 ## Session Continuity
 
 Last session: 2026-04-13
-Stopped at: Phase 08 complete, ready for Phase 09 (Model Integration)
-Resume file: .planning/phases/08-model-research/08-02-SUMMARY.md
+Stopped at: Phase 09 complete, ready for Phase 10 (Modular Pipeline)
+Resume file: .planning/phases/09-model-integration/09-01-SUMMARY.md
