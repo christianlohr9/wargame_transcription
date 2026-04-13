@@ -40,6 +40,7 @@ Transform the Kubernetes-deployed Blackbox AI wargaming platform into a fully lo
 
 Plans:
 - [x] 08-01: Transcription benchmarks (3 candidates evaluated)
+- [x] 08-02: Diarization benchmarks & recommendations (pyannote retained, hybrid pipeline recommended)
 
 #### Phase 9: Model Integration
 
@@ -93,7 +94,7 @@ Plans:
 | 5. Frontend Setup | v1.0 | 1/1 | Complete | 2026-01-22 |
 | 6. Integration Testing | v1.0 | 1/1 | Complete | 2026-01-25 |
 | 7. Diarization Service | v1.0 | 1/1 | Complete | 2026-01-25 |
-| 8. Model Research | v2.0 | 1/? | In progress | - |
+| 8. Model Research | v2.0 | 2/2 | Complete | 2026-04-13 |
 | 9. Model Integration | v2.0 | 0/? | Not started | - |
 | 10. Modular Pipeline | v2.0 | 0/? | Not started | - |
 | 11. Frontend Adaptation | v2.0 | 0/? | Not started | - |
