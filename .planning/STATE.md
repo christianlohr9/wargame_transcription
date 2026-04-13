@@ -10,11 +10,11 @@ See: .planning/PROJECT.md (updated 2026-01-25)
 ## Current Position
 
 Phase: 8 of 12 (model-research)
-Plan: Not started
-Status: Ready to plan
-Last activity: 2026-04-13 — Milestone v2.0 created
+Plan: 01 complete (transcription benchmarks)
+Status: Ready for next plan
+Last activity: 2026-04-13 — Transcription benchmarks complete
 
-Progress: ██████████░░░░░░░░░░ 70% (v1.0 complete, v2.0 starting)
+Progress: ██████████░░░░░░░░░░ 72% (v2.0 Phase 8 plan 01 done)
 
 ## Performance Metrics
 
@@ -41,6 +41,10 @@ Progress: ██████████░░░░░░░░░░ 70% (v1.0
 
 All v1.0 decisions logged in PROJECT.md Key Decisions table with outcomes marked.
 
+**v2.0 decisions:**
+- [Phase 08, Plan 01]: distil-large-v3 identified as leading transcription candidate (525MB model, 0.30 RTF, proper punctuation)
+- [Phase 08, Plan 01]: PyTorch 2.6+ requires weights_only monkeypatch for WhisperX/pyannote — may affect production Dockerfile
+
 ### Deferred Issues
 
 None.
@@ -57,5 +61,5 @@ None.
 ## Session Continuity
 
 Last session: 2026-04-13
-Stopped at: Milestone v2.0 initialization
-Resume file: None
+Stopped at: Phase 08 plan 01 complete, ready for plan 02
+Resume file: .planning/phases/08-model-research/08-01-SUMMARY.md
