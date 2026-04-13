@@ -9,12 +9,12 @@ See: .planning/PROJECT.md (updated 2026-01-25)
 
 ## Current Position
 
-Phase: 10 of 12 (modular-pipeline) — IN PROGRESS
-Plan: 01 complete (pipeline configuration & mode resolution)
-Status: Plan 01 complete, ready for Plan 02 (workflow branching)
-Last activity: 2026-04-13 — PipelineConfig + PipelineModeResolver with auto-detect and graceful degradation
+Phase: 10 of 12 (modular-pipeline) — COMPLETE
+Plan: 02 complete (workflow branching & service adaptation)
+Status: Phase 10 complete, ready for Phase 11 (frontend adaptation)
+Last activity: 2026-04-13 — Conductor SWITCH branching + mode-aware diarization service
 
-Progress: █████████████░░░░░░░ 87% (v2.0 Phase 10 Plan 01 complete)
+Progress: ██████████████░░░░░░ 90% (v2.0 Phase 10 complete)
 
 ## Performance Metrics
 
@@ -50,7 +50,10 @@ All v1.0 decisions logged in PROJECT.md Key Decisions table with outcomes marked
 - [Phase 09, Plan 01]: distil-large-v3.5 chosen over v3 — 889MB vs 1682MB memory, 0.289 vs 0.295 RTF, better text quality
 - [Phase 09, Plan 01]: Conductor registration made graceful — services start standalone when orchestrator unavailable
 - [Phase 10, Plan 01]: Health checks at trigger time, not startup — diarization loads ML models slowly
-- [Phase 10, Plan 01]: Graceful degradation — requested mode downgrades if services unavailable, warns and proceeds
+- [Phase 10, Plan 01]: Graceful degradation — requested mode downgrades if services unavailable
+- [Phase 10, Plan 02]: Conductor SWITCH with value-param evaluator for pipeline mode branching
+- [Phase 10, Plan 02]: transcription_only skips pyannote entirely (~10-15s CPU savings), keeps alignment
+- [Phase 10, Plan 02]: WorkflowMigrationService always updates workflows — no skip-if-exists for versioned definitions, warns and proceeds
 
 ### Deferred Issues
 
@@ -68,5 +71,5 @@ None.
 ## Session Continuity
 
 Last session: 2026-04-13
-Stopped at: Phase 10, Plan 01 complete — ready for Plan 02 (workflow branching)
-Resume file: .planning/phases/10-modular-pipeline/10-01-SUMMARY.md
+Stopped at: Phase 10 complete — ready for Phase 11 (frontend adaptation)
+Resume file: .planning/phases/10-modular-pipeline/10-02-SUMMARY.md
