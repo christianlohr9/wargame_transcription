@@ -9,12 +9,12 @@ See: .planning/PROJECT.md (updated 2026-01-25)
 
 ## Current Position
 
-Phase: 9 of 12 (model-integration) — COMPLETE
-Plan: 01 complete (hybrid pipeline integration)
-Status: Phase 9 complete, ready for Phase 10
-Last activity: 2026-04-13 — Hybrid pipeline with distil-large-v3.5 integrated and verified
+Phase: 10 of 12 (modular-pipeline) — IN PROGRESS
+Plan: 01 complete (pipeline configuration & mode resolution)
+Status: Plan 01 complete, ready for Plan 02 (workflow branching)
+Last activity: 2026-04-13 — PipelineConfig + PipelineModeResolver with auto-detect and graceful degradation
 
-Progress: █████████████░░░░░░░ 85% (v2.0 Phase 9 complete)
+Progress: █████████████░░░░░░░ 87% (v2.0 Phase 10 Plan 01 complete)
 
 ## Performance Metrics
 
@@ -49,6 +49,8 @@ All v1.0 decisions logged in PROJECT.md Key Decisions table with outcomes marked
 - [Phase 08, Plan 02]: Full recommendations in 08-RECOMMENDATION.md
 - [Phase 09, Plan 01]: distil-large-v3.5 chosen over v3 — 889MB vs 1682MB memory, 0.289 vs 0.295 RTF, better text quality
 - [Phase 09, Plan 01]: Conductor registration made graceful — services start standalone when orchestrator unavailable
+- [Phase 10, Plan 01]: Health checks at trigger time, not startup — diarization loads ML models slowly
+- [Phase 10, Plan 01]: Graceful degradation — requested mode downgrades if services unavailable, warns and proceeds
 
 ### Deferred Issues
 
@@ -66,5 +68,5 @@ None.
 ## Session Continuity
 
 Last session: 2026-04-13
-Stopped at: Phase 09 complete, ready for Phase 10 (Modular Pipeline)
-Resume file: .planning/phases/09-model-integration/09-01-SUMMARY.md
+Stopped at: Phase 10, Plan 01 complete — ready for Plan 02 (workflow branching)
+Resume file: .planning/phases/10-modular-pipeline/10-01-SUMMARY.md
