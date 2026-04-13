@@ -5,25 +5,25 @@
 See: .planning/PROJECT.md (updated 2026-01-25)
 
 **Core value:** Get all services running locally so the platform is usable end-to-end
-**Current focus:** v1.0 shipped — Platform ready for local wargame analysis
+**Current focus:** v2.0 Modular CPU-Only Platform — selective services, lighter models
 
 ## Current Position
 
-Phase: 7 of 7 (complete)
-Plan: All plans complete
-Status: v1.0 shipped
-Last activity: 2026-01-25 — v1.0 Local Wargame Analysis milestone complete
+Phase: 8 of 12 (model-research)
+Plan: Not started
+Status: Ready to plan
+Last activity: 2026-04-13 — Milestone v2.0 created
 
-Progress: ██████████ 100%
+Progress: ██████████░░░░░░░░░░ 70% (v1.0 complete, v2.0 starting)
 
 ## Performance Metrics
 
-**Velocity:**
+**Velocity (v1.0):**
 - Total plans completed: 10
 - Average duration: 33 min
 - Total execution time: 5.4 hours
 
-**By Phase:**
+**By Phase (v1.0):**
 
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
@@ -39,7 +39,7 @@ Progress: ██████████ 100%
 
 ### Decisions
 
-All decisions logged in PROJECT.md Key Decisions table with outcomes marked.
+All v1.0 decisions logged in PROJECT.md Key Decisions table with outcomes marked.
 
 ### Deferred Issues
 
@@ -49,8 +49,13 @@ None.
 
 None.
 
+### Roadmap Evolution
+
+- v1.0 shipped 2026-01-25: Full local wargame analysis platform, 7 phases
+- v2.0 created 2026-04-13: Modular CPU-only platform, 5 phases (Phase 8-12) — selective services, model research (Voxtral etc.), lighter pipeline modes
+
 ## Session Continuity
 
-Last session: 2026-01-25
-Stopped at: v1.0 milestone complete
+Last session: 2026-04-13
+Stopped at: Milestone v2.0 initialization
 Resume file: None

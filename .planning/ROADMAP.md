@@ -7,6 +7,7 @@ Transform the Kubernetes-deployed Blackbox AI wargaming platform into a fully lo
 ## Milestones
 
 - ✅ **v1.0 Local Wargame Analysis** — Phases 1-7 (shipped 2026-01-25)
+- 🚧 **v2.0 Modular CPU-Only Platform** — Phases 8-12 (in progress)
 
 ## Completed Milestones
 
@@ -25,6 +26,62 @@ Transform the Kubernetes-deployed Blackbox AI wargaming platform into a fully lo
 
 </details>
 
+### 🚧 v2.0 Modular CPU-Only Platform (In Progress)
+
+**Milestone Goal:** Make the platform modular — transcription works standalone on 16GB CPU, with diarization and LLM summaries as optional add-ons. Research and integrate better/lighter models for CPU-only use.
+
+#### Phase 8: Model Research
+
+**Goal**: Research Voxtral, lighter Whisper variants (distil-whisper, whisper.cpp, faster-whisper), and CPU-optimized diarization alternatives. Evaluate CPU performance, accuracy, and local deployment feasibility.
+**Depends on**: v1.0 complete
+**Research**: Likely (new models, fast-moving ecosystem)
+**Research topics**: Voxtral capabilities and local deployment, Whisper model variants for CPU, faster-whisper vs WhisperX, CPU-optimized diarization options
+**Plans**: TBD
+
+Plans:
+- [ ] 08-01: TBD (run /gsd:plan-phase 8 to break down)
+
+#### Phase 9: Model Integration
+
+**Goal**: Swap in better models identified during research — replace or add alternatives to current WhisperX + pyannote setup based on findings.
+**Depends on**: Phase 8
+**Research**: Likely (integrating new libraries/models)
+**Research topics**: Integration patterns for chosen models, dependency management, configuration for model selection
+**Plans**: TBD
+
+Plans:
+- [ ] 09-01: TBD (run /gsd:plan-phase 9 to break down)
+
+#### Phase 10: Modular Pipeline
+
+**Goal**: Backend config to toggle diarization and chat services on/off. Conductor workflow adapts automatically — supports transcription-only, transcription+diarization, or full pipeline modes. Health checks detect what's running.
+**Depends on**: Phase 9
+**Research**: Unlikely (existing Conductor and Spring Boot patterns)
+**Plans**: TBD
+
+Plans:
+- [ ] 10-01: TBD (run /gsd:plan-phase 10 to break down)
+
+#### Phase 11: Frontend Adaptation
+
+**Goal**: UI gracefully handles missing data — no summary tab without LLM, no speaker labels without diarization. Service status visible to user.
+**Depends on**: Phase 10
+**Research**: Unlikely (existing Vue/Quasar patterns)
+**Plans**: TBD
+
+Plans:
+- [ ] 11-01: TBD (run /gsd:plan-phase 11 to break down)
+
+#### Phase 12: Integration Testing
+
+**Goal**: End-to-end validation of all three pipeline modes (transcription-only, transcription+diarization, full) on 16GB CPU-only hardware.
+**Depends on**: Phase 11
+**Research**: Unlikely (established testing patterns)
+**Plans**: TBD
+
+Plans:
+- [ ] 12-01: TBD (run /gsd:plan-phase 12 to break down)
+
 ## Progress
 
 | Phase | Milestone | Plans Complete | Status | Completed |
@@ -36,5 +93,10 @@ Transform the Kubernetes-deployed Blackbox AI wargaming platform into a fully lo
 | 5. Frontend Setup | v1.0 | 1/1 | Complete | 2026-01-22 |
 | 6. Integration Testing | v1.0 | 1/1 | Complete | 2026-01-25 |
 | 7. Diarization Service | v1.0 | 1/1 | Complete | 2026-01-25 |
+| 8. Model Research | v2.0 | 0/? | Not started | - |
+| 9. Model Integration | v2.0 | 0/? | Not started | - |
+| 10. Modular Pipeline | v2.0 | 0/? | Not started | - |
+| 11. Frontend Adaptation | v2.0 | 0/? | Not started | - |
+| 12. Integration Testing | v2.0 | 0/? | Not started | - |
 
-**Total: 7 phases, 10 plans — all complete**
+**Total: 12 phases, 10 complete + 5 new**
