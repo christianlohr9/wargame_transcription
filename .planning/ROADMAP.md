@@ -72,7 +72,8 @@ Plans:
 **Plans**: TBD
 
 Plans:
-- [ ] 11-01: TBD (run /gsd:plan-phase 11 to break down)
+- [ ] 11-01: Pipeline status endpoint & service status UI
+- [ ] 11-02: Adaptive results view
 
 #### Phase 12: Integration Testing
 
