@@ -9,12 +9,12 @@ See: .planning/PROJECT.md (updated 2026-01-25)
 
 ## Current Position
 
-Phase: 11 of 12 (frontend-adaptation) — IN PROGRESS
-Plan: 01 complete (pipeline status endpoint & service status UI)
-Status: Plan 11-01 complete, ready for Plan 11-02 (adaptive results view)
-Last activity: 2026-04-14 — Pipeline status API + AppBar service status chips
+Phase: 11 of 13 (frontend-adaptation) — COMPLETE
+Plan: 02 complete (adaptive results view)
+Status: Phase 11 complete, ready for Phase 12 (integration testing)
+Last activity: 2026-04-14 — Adaptive results view + multiple runtime fixes
 
-Progress: ███████████████░░░░░ 92% (v2.0 Phase 11, Plan 01 complete)
+Progress: ████████████████░░░░ 92% (v2.0 Phase 11 complete)
 
 ## Performance Metrics
 
@@ -56,6 +56,12 @@ All v1.0 decisions logged in PROJECT.md Key Decisions table with outcomes marked
 - [Phase 10, Plan 02]: WorkflowMigrationService always updates workflows — no skip-if-exists for versioned definitions, warns and proceeds
 - [Phase 11, Plan 01]: getServiceHealth() added to PipelineModeResolver — centralized health check exposure for status endpoint
 - [Phase 11, Plan 01]: Maven CLI requires JDK 21 (JAVA_HOME=/opt/homebrew/opt/openjdk@21/...) — JDK 25 breaks Lombok annotation processing
+- [Phase 11, Plan 02]: definitionOfRounds only required for full mode — non-full modes skip the check
+- [Phase 11, Plan 02]: pyannote diarization pipeline lazy-loaded — allows transcription_only without HF_TOKEN
+- [Phase 11, Plan 02]: vad_filter=True on faster-whisper to prevent early transcription cutoff
+- [Phase 11, Plan 02]: Conductor SWITCH branches require globally unique taskReferenceNames — even across branches
+- [Phase 11, Plan 02]: Local profile service-url must match actual server port (8081), not Conductor (8080)
+- [Phase 11, Plan 02]: speaker-diarization-service .env had Windows line endings (\r\n) causing HF_TOKEN auth failures
 
 ### Deferred Issues
 
@@ -68,10 +74,11 @@ None.
 ### Roadmap Evolution
 
 - v1.0 shipped 2026-01-25: Full local wargame analysis platform, 7 phases
-- v2.0 created 2026-04-13: Modular CPU-only platform, 5 phases (Phase 8-12) — selective services, model research (Voxtral etc.), lighter pipeline modes
+- v2.0 created 2026-04-13: Modular CPU-only platform, 6 phases (Phase 8-13) — selective services, model research (Voxtral etc.), lighter pipeline modes
+- Phase 13 added 2026-04-14: One-Click Services — containerize all app services in docker-compose, UI toggle for non-technical users
 
 ## Session Continuity
 
 Last session: 2026-04-14
-Stopped at: Phase 11, Plan 01 complete — ready for Plan 11-02 (adaptive results view)
-Resume file: .planning/phases/11-frontend-adaptation/11-01-SUMMARY.md
+Stopped at: Phase 11 complete — ready for Phase 12 (integration testing)
+Resume file: .planning/phases/11-frontend-adaptation/11-02-SUMMARY.md

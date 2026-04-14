@@ -7,7 +7,7 @@ Transform the Kubernetes-deployed Blackbox AI wargaming platform into a fully lo
 ## Milestones
 
 - ✅ **v1.0 Local Wargame Analysis** — Phases 1-7 (shipped 2026-01-25)
-- 🚧 **v2.0 Modular CPU-Only Platform** — Phases 8-12 (in progress)
+- 🚧 **v2.0 Modular CPU-Only Platform** — Phases 8-13 (in progress)
 
 ## Completed Milestones
 
@@ -73,7 +73,7 @@ Plans:
 
 Plans:
 - [x] 11-01: Pipeline status endpoint & service status UI
-- [ ] 11-02: Adaptive results view
+- [x] 11-02: Adaptive results view
 
 #### Phase 12: Integration Testing
 
@@ -84,6 +84,16 @@ Plans:
 
 Plans:
 - [ ] 12-01: TBD (run /gsd:plan-phase 12 to break down)
+
+#### Phase 13: One-Click Services
+
+**Goal**: Containerize all app services (backend, diarization, chat) in docker-compose so `docker compose up` starts the full platform. Add a UI toggle to start/stop optional services (diarization, chat) without touching a terminal. Add transcript download/export. Target audience: people who have never used a CLI or IDE.
+**Depends on**: Phase 12
+**Research**: Unlikely (Docker Compose profiles, Docker API patterns)
+**Plans**: TBD
+
+Plans:
+- [ ] 13-01: TBD (run /gsd:plan-phase 13 to break down)
 
 ## Progress
 
@@ -99,7 +109,8 @@ Plans:
 | 8. Model Research | v2.0 | 2/2 | Complete | 2026-04-13 |
 | 9. Model Integration | v2.0 | 1/1 | Complete | 2026-04-13 |
 | 10. Modular Pipeline | v2.0 | 2/2 | Complete | 2026-04-13 |
-| 11. Frontend Adaptation | v2.0 | 1/2 | In progress | - |
+| 11. Frontend Adaptation | v2.0 | 2/2 | Complete | 2026-04-14 |
 | 12. Integration Testing | v2.0 | 0/? | Not started | - |
+| 13. One-Click Services | v2.0 | 0/? | Not started | - |
 
-**Total: 12 phases, 10 complete + 5 new**
+**Total: 13 phases, 10 complete + 6 new**
