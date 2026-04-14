@@ -9,12 +9,12 @@ See: .planning/PROJECT.md (updated 2026-01-25)
 
 ## Current Position
 
-Phase: 10 of 12 (modular-pipeline) — COMPLETE
-Plan: 02 complete (workflow branching & service adaptation)
-Status: Phase 10 complete, ready for Phase 11 (frontend adaptation)
-Last activity: 2026-04-13 — Conductor SWITCH branching + mode-aware diarization service
+Phase: 11 of 12 (frontend-adaptation) — IN PROGRESS
+Plan: 01 complete (pipeline status endpoint & service status UI)
+Status: Plan 11-01 complete, ready for Plan 11-02 (adaptive results view)
+Last activity: 2026-04-14 — Pipeline status API + AppBar service status chips
 
-Progress: ██████████████░░░░░░ 90% (v2.0 Phase 10 complete)
+Progress: ███████████████░░░░░ 92% (v2.0 Phase 11, Plan 01 complete)
 
 ## Performance Metrics
 
@@ -54,6 +54,8 @@ All v1.0 decisions logged in PROJECT.md Key Decisions table with outcomes marked
 - [Phase 10, Plan 02]: Conductor SWITCH with value-param evaluator for pipeline mode branching
 - [Phase 10, Plan 02]: transcription_only skips pyannote entirely (~10-15s CPU savings), keeps alignment
 - [Phase 10, Plan 02]: WorkflowMigrationService always updates workflows — no skip-if-exists for versioned definitions, warns and proceeds
+- [Phase 11, Plan 01]: getServiceHealth() added to PipelineModeResolver — centralized health check exposure for status endpoint
+- [Phase 11, Plan 01]: Maven CLI requires JDK 21 (JAVA_HOME=/opt/homebrew/opt/openjdk@21/...) — JDK 25 breaks Lombok annotation processing
 
 ### Deferred Issues
 
@@ -70,6 +72,6 @@ None.
 
 ## Session Continuity
 
-Last session: 2026-04-13
-Stopped at: Phase 10 complete — ready for Phase 11 (frontend adaptation)
-Resume file: .planning/phases/10-modular-pipeline/10-02-SUMMARY.md
+Last session: 2026-04-14
+Stopped at: Phase 11, Plan 01 complete — ready for Plan 11-02 (adaptive results view)
+Resume file: .planning/phases/11-frontend-adaptation/11-01-SUMMARY.md

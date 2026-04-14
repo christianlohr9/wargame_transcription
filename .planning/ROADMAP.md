@@ -72,7 +72,7 @@ Plans:
 **Plans**: TBD
 
 Plans:
-- [ ] 11-01: Pipeline status endpoint & service status UI
+- [x] 11-01: Pipeline status endpoint & service status UI
 - [ ] 11-02: Adaptive results view
 
 #### Phase 12: Integration Testing
@@ -99,7 +99,7 @@ Plans:
 | 8. Model Research | v2.0 | 2/2 | Complete | 2026-04-13 |
 | 9. Model Integration | v2.0 | 1/1 | Complete | 2026-04-13 |
 | 10. Modular Pipeline | v2.0 | 2/2 | Complete | 2026-04-13 |
-| 11. Frontend Adaptation | v2.0 | 0/? | Not started | - |
+| 11. Frontend Adaptation | v2.0 | 1/2 | In progress | - |
 | 12. Integration Testing | v2.0 | 0/? | Not started | - |
 
 **Total: 12 phases, 10 complete + 5 new**
