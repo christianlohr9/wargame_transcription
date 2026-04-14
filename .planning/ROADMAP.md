@@ -83,7 +83,8 @@ Plans:
 **Plans**: TBD
 
 Plans:
-- [ ] 12-01: TBD (run /gsd:plan-phase 12 to break down)
+- [ ] 12-01: Pre-flight audit & transcription-only validation
+- [ ] 12-02: Diarization & full pipeline + Docker readiness
 
 #### Phase 13: One-Click Services
 
