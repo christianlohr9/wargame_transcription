@@ -93,7 +93,7 @@ Plans:
 **Research**: Completed (13-RESEARCH.md — Electron + portable runtimes, Docker NOT viable on restricted Windows)
 
 Plans:
-- [ ] 13-01: Replace Conductor with direct Spring Boot orchestration
+- [x] 13-01: Replace Conductor with direct Spring Boot orchestration
 - [ ] 13-02: Convert Python services to REST-only (remove Conductor dependency)
 - [ ] 13-03: Replace MongoDB with H2 + filesystem storage, embed Tika
 - [ ] 13-04: Frontend transcript export (PDF, DOCX, TXT)
@@ -117,6 +117,6 @@ Plans:
 | 10. Modular Pipeline | v2.0 | 2/2 | Complete | 2026-04-13 |
 | 11. Frontend Adaptation | v2.0 | 2/2 | Complete | 2026-04-14 |
 | 12. Integration Testing | v2.0 | 2/2 | Complete | 2026-04-15 |
-| 13. One-Click Services | v2.0 | 0/7 | Planned | - |
+| 13. One-Click Services | v2.0 | 1/7 | In progress | - |
 
 **Total: 13 phases, 10 complete + 6 new**

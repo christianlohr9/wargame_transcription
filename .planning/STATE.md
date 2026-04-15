@@ -9,12 +9,12 @@ See: .planning/PROJECT.md (updated 2026-01-25)
 
 ## Current Position
 
-Phase: 12 of 13 (integration-testing) — COMPLETE
-Plan: 02 complete (diarization & full pipeline + Docker readiness)
-Status: Phase 12 complete, ready for Phase 13 (one-click services)
-Last activity: 2026-04-15 — Diarization validated, full pipeline deferred (Ollama unavailable), Docker-readiness documented
+Phase: 13 of 13 (one-click-services) — IN PROGRESS
+Plan: 01 complete (replace Conductor with direct orchestration)
+Status: Plan 01 done, ready for Plan 02 (Python REST-only conversion)
+Last activity: 2026-04-15 — Conductor replaced with PipelineOrchestrationService, 20 files deleted, 4 infra deps eliminated
 
-Progress: ████████████████████ 100% (v2.0 Phase 12 complete, Phase 13 remaining)
+Progress: █████████████████░░░ 85% (v2.0 Phase 13: 1/7 plans complete)
 
 ## Performance Metrics
 
@@ -40,6 +40,11 @@ Progress: ████████████████████ 100% (v2.
 ### Decisions
 
 All v1.0 decisions logged in PROJECT.md Key Decisions table with outcomes marked.
+
+**v2.0 decisions (Phase 13):**
+- [Phase 13, Plan 01]: Direct Java if/else replaces Conductor SWITCH — no workflow engine library needed
+- [Phase 13, Plan 01]: HTTP retry (3 retries, 2s backoff) replaces Conductor's transparent retry for Python service calls
+- [Phase 13, Plan 01]: Conductor references remain in docker-compose.yml — out of scope for Java backend cleanup
 
 **v2.0 decisions (Phase 12):**
 - [Phase 12, Plan 01]: large-v3-turbo replaces distil-large-v3.5 — all distil-whisper models are English-only
@@ -88,5 +93,5 @@ None.
 ## Session Continuity
 
 Last session: 2026-04-15
-Stopped at: Phase 12 complete — ready for Phase 13
-Resume file: .planning/phases/12-integration-testing/12-02-SUMMARY.md
+Stopped at: Phase 13, Plan 01 complete — ready for Plan 02
+Resume file: .planning/phases/13-one-click-services/13-01-SUMMARY.md
