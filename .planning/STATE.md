@@ -9,12 +9,12 @@ See: .planning/PROJECT.md (updated 2026-01-25)
 
 ## Current Position
 
-Phase: 13 of 13 (one-click-services) — IN PROGRESS
-Plan: 06 complete (Portable runtimes — jlink JRE, conda-pack Python, model bundling)
-Status: Plan 06 done, ready for Plan 07 (Packaging — electron-builder, NSIS installer)
-Last activity: 2026-04-15 — jlink/conda-pack build scripts, processManager runtime resolution
+Phase: 13 of 13 (one-click-services) — COMPLETE
+Plan: 07 complete (Packaging — electron-builder, NSIS installer, final verification)
+Status: Phase 13 complete. v2.0 Modular CPU-Only Platform milestone complete.
+Last activity: 2026-04-15 — electron-builder config, build pipeline, circular dependency fix
 
-Progress: █████████████████░░░ 96% (v2.0 Phase 13: 6/7 plans complete)
+Progress: ████████████████████ 100% (v2.0 Phase 13: 7/7 plans complete)
 
 ## Performance Metrics
 
@@ -42,6 +42,8 @@ Progress: █████████████████░░░ 96% (v2.0
 All v1.0 decisions logged in PROJECT.md Key Decisions table with outcomes marked.
 
 **v2.0 decisions (Phase 13):**
+- [Phase 13, Plan 07]: @Lazy on AnalysisService in PipelineOrchestrationService to break circular bean dependency
+- [Phase 13, Plan 07]: macOS dir target for dev, Windows NSIS for prod — no cross-compilation
 - [Phase 13, Plan 01]: Direct Java if/else replaces Conductor SWITCH — no workflow engine library needed
 - [Phase 13, Plan 01]: HTTP retry (3 retries, 2s backoff) replaces Conductor's transparent retry for Python service calls
 - [Phase 13, Plan 02]: pipeline_mode added to /transcriptions REST endpoint — was only available via Conductor task
@@ -111,5 +113,5 @@ None.
 ## Session Continuity
 
 Last session: 2026-04-15
-Stopped at: Phase 13, Plan 06 complete — ready for Plan 07
-Resume file: .planning/phases/13-one-click-services/13-06-SUMMARY.md
+Stopped at: Phase 13 complete — v2.0 milestone complete
+Resume file: .planning/phases/13-one-click-services/13-07-SUMMARY.md
