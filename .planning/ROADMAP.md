@@ -83,7 +83,7 @@ Plans:
 **Plans**: TBD
 
 Plans:
-- [ ] 12-01: Pre-flight audit & transcription-only validation
+- [x] 12-01: Pre-flight audit & transcription-only validation
 - [ ] 12-02: Diarization & full pipeline + Docker readiness
 
 #### Phase 13: One-Click Services
@@ -111,7 +111,7 @@ Plans:
 | 9. Model Integration | v2.0 | 1/1 | Complete | 2026-04-13 |
 | 10. Modular Pipeline | v2.0 | 2/2 | Complete | 2026-04-13 |
 | 11. Frontend Adaptation | v2.0 | 2/2 | Complete | 2026-04-14 |
-| 12. Integration Testing | v2.0 | 0/? | Not started | - |
+| 12. Integration Testing | v2.0 | 1/2 | In progress | - |
 | 13. One-Click Services | v2.0 | 0/? | Not started | - |
 
 **Total: 13 phases, 10 complete + 6 new**

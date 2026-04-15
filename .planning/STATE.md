@@ -9,12 +9,12 @@ See: .planning/PROJECT.md (updated 2026-01-25)
 
 ## Current Position
 
-Phase: 11 of 13 (frontend-adaptation) — COMPLETE
-Plan: 02 complete (adaptive results view)
-Status: Phase 11 complete, ready for Phase 12 (integration testing)
-Last activity: 2026-04-14 — Adaptive results view + multiple runtime fixes
+Phase: 12 of 13 (integration-testing) — IN PROGRESS
+Plan: 01 complete (pre-flight audit & transcription-only validation)
+Status: Plan 12-01 complete, ready for Plan 12-02 (diarization & full pipeline + Docker readiness)
+Last activity: 2026-04-15 — Config audit, model swap to large-v3-turbo, language pipeline fix
 
-Progress: ████████████████░░░░ 92% (v2.0 Phase 11 complete)
+Progress: █████████████████░░░ 95% (v2.0 Phase 12 plan 01 complete)
 
 ## Performance Metrics
 
@@ -41,7 +41,13 @@ Progress: ████████████████░░░░ 92% (v2.0
 
 All v1.0 decisions logged in PROJECT.md Key Decisions table with outcomes marked.
 
-**v2.0 decisions:**
+**v2.0 decisions (Phase 12):**
+- [Phase 12, Plan 01]: large-v3-turbo replaces distil-large-v3.5 — all distil-whisper models are English-only
+- [Phase 12, Plan 01]: language="de" hardcoded in AnalysisServiceImpl — multilingual UI selector deferred
+- [Phase 12, Plan 01]: Analytics panel requires speakerStats.length > 1, not determinedSpeakers — works without LLM
+- [Phase 12, Plan 01]: Maven multi-module requires `mvn clean install` from root POM to rebuild dependency modules
+
+**v2.0 decisions (Phases 8-11):**
 - [Phase 08, Plan 01]: distil-large-v3 identified as leading transcription candidate (525MB model, 0.30 RTF, proper punctuation)
 - [Phase 08, Plan 01]: PyTorch 2.6+ requires weights_only monkeypatch for WhisperX/pyannote — may affect production Dockerfile
 - [Phase 08, Plan 02]: pyannote retained for diarization — diarize library over-segments (8 speakers on 3-speaker audio)
@@ -79,6 +85,6 @@ None.
 
 ## Session Continuity
 
-Last session: 2026-04-14
-Stopped at: Phase 11 complete — ready for Phase 12 (integration testing)
-Resume file: .planning/phases/11-frontend-adaptation/11-02-SUMMARY.md
+Last session: 2026-04-15
+Stopped at: Phase 12 plan 01 complete — ready for Plan 12-02
+Resume file: .planning/phases/12-integration-testing/12-01-SUMMARY.md
