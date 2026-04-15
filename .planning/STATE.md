@@ -9,12 +9,12 @@ See: .planning/PROJECT.md (updated 2026-01-25)
 
 ## Current Position
 
-Phase: 12 of 13 (integration-testing) — IN PROGRESS
-Plan: 01 complete (pre-flight audit & transcription-only validation)
-Status: Plan 12-01 complete, ready for Plan 12-02 (diarization & full pipeline + Docker readiness)
-Last activity: 2026-04-15 — Config audit, model swap to large-v3-turbo, language pipeline fix
+Phase: 12 of 13 (integration-testing) — COMPLETE
+Plan: 02 complete (diarization & full pipeline + Docker readiness)
+Status: Phase 12 complete, ready for Phase 13 (one-click services)
+Last activity: 2026-04-15 — Diarization validated, full pipeline deferred (Ollama unavailable), Docker-readiness documented
 
-Progress: █████████████████░░░ 95% (v2.0 Phase 12 plan 01 complete)
+Progress: ████████████████████ 100% (v2.0 Phase 12 complete, Phase 13 remaining)
 
 ## Performance Metrics
 
@@ -46,6 +46,8 @@ All v1.0 decisions logged in PROJECT.md Key Decisions table with outcomes marked
 - [Phase 12, Plan 01]: language="de" hardcoded in AnalysisServiceImpl — multilingual UI selector deferred
 - [Phase 12, Plan 01]: Analytics panel requires speakerStats.length > 1, not determinedSpeakers — works without LLM
 - [Phase 12, Plan 01]: Maven multi-module requires `mvn clean install` from root POM to rebuild dependency modules
+- [Phase 12, Plan 02]: Full pipeline LLM validation deferred — Ollama server unavailable during testing
+- [Phase 12, Plan 02]: Graceful degradation when Ollama unreachable is open question for Phase 13
 
 **v2.0 decisions (Phases 8-11):**
 - [Phase 08, Plan 01]: distil-large-v3 identified as leading transcription candidate (525MB model, 0.30 RTF, proper punctuation)
@@ -86,5 +88,5 @@ None.
 ## Session Continuity
 
 Last session: 2026-04-15
-Stopped at: Phase 12 plan 01 complete — ready for Plan 12-02
-Resume file: .planning/phases/12-integration-testing/12-01-SUMMARY.md
+Stopped at: Phase 12 complete — ready for Phase 13
+Resume file: .planning/phases/12-integration-testing/12-02-SUMMARY.md
