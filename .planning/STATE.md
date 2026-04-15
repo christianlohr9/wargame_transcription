@@ -2,19 +2,19 @@
 
 ## Project Reference
 
-See: .planning/PROJECT.md (updated 2026-01-25)
+See: .planning/PROJECT.md (updated 2026-04-15)
 
-**Core value:** Get all services running locally so the platform is usable end-to-end
-**Current focus:** v2.0 Modular CPU-Only Platform — selective services, lighter models
+**Core value:** One-click wargame analysis for non-technical users
+**Current focus:** v2.0 shipped — ready for Windows deployment testing
 
 ## Current Position
 
-Phase: 13 of 13 (one-click-services) — COMPLETE
-Plan: 07 complete (Packaging — electron-builder, NSIS installer, final verification)
-Status: Phase 13 complete. v2.0 Modular CPU-Only Platform milestone complete.
-Last activity: 2026-04-15 — electron-builder config, build pipeline, circular dependency fix
+Phase: 13 of 13 — ALL COMPLETE
+Plan: All plans complete
+Status: v2.0 Modular CPU-Only Platform — SHIPPED
+Last activity: 2026-04-15 — v2.0 milestone archived
 
-Progress: ████████████████████ 100% (v2.0 Phase 13: 7/7 plans complete)
+Progress: ████████████████████ 100% (v1.0: 7 phases, v2.0: 6 phases — all complete)
 
 ## Performance Metrics
 
@@ -39,62 +39,8 @@ Progress: ████████████████████ 100% (v2.
 
 ### Decisions
 
-All v1.0 decisions logged in PROJECT.md Key Decisions table with outcomes marked.
-
-**v2.0 decisions (Phase 13):**
-- [Phase 13, Plan 07]: @Lazy on AnalysisService in PipelineOrchestrationService to break circular bean dependency
-- [Phase 13, Plan 07]: macOS dir target for dev, Windows NSIS for prod — no cross-compilation
-- [Phase 13, Plan 01]: Direct Java if/else replaces Conductor SWITCH — no workflow engine library needed
-- [Phase 13, Plan 01]: HTTP retry (3 retries, 2s backoff) replaces Conductor's transparent retry for Python service calls
-- [Phase 13, Plan 02]: pipeline_mode added to /transcriptions REST endpoint — was only available via Conductor task
-- [Phase 13, Plan 02]: 600s read timeout on RestTemplate for diarization ML inference
-- [Phase 13, Plan 02]: docker-compose reduced from 7 to 3 services (mongodb, minio, tika remain)
-- [Phase 13, Plan 03]: JSON CLOB columns via @Convert for nested DOs — simpler than @ElementCollection for 3+ nesting levels
-- [Phase 13, Plan 03]: File-based H2 (jdbc:h2:file:./data/blackbox-db) for persistent data across restarts
-- [Phase 13, Plan 03]: FileStorageService pattern: {base}/{subdir}/{id}/{filename} + metadata.json sidecar
-- [Phase 13, Plan 03]: Package renamed persistance.mongodb -> persistance.jpa for clarity
-- [Phase 13, Plan 03]: docker-compose.yml deleted — all 7 infrastructure services eliminated
-- [Phase 13, Plan 04]: Dynamic import for pdfmake — PDF chunks only loaded on export to keep initial bundle lean
-- [Phase 13, Plan 04]: Speaker name resolution in exports reuses determinedSpeakers mapping from workspace model
-- [Phase 13, Plan 04]: Composable pattern (useTranscriptExport) for stateless export functions, no store dependency
-- [Phase 13, Plan 05]: Custom app:// protocol for serving SPA dist/ — loadFile fails with absolute asset paths under file://
-- [Phase 13, Plan 05]: HealthChecker.setState() for immediate UI feedback on toggle — can't wait for 5s poll cycle
-- [Phase 13, Plan 05]: Services default to 'stopped' — only 'starting' when processManager actually spawns them
-- [Phase 13, Plan 05]: Separate blackbox-desktop/ package keeps Electron decoupled from frontend build
-- [Phase 13, Plan 06]: resolveRuntimePaths() fallback — bundled paths preferred, system PATH fallback for dev
-- [Phase 13, Plan 06]: Known Spring Boot module set as jdeps fallback for fat JAR analysis
-- [Phase 13, Plan 06]: CPU-only PyTorch in conda-pack (~2-3GB vs ~5GB with CUDA)
-- [Phase 13, Plan 06]: HF_HOME/WHISPER_CACHE env vars injected by processManager when bundled models exist
-
-**v2.0 decisions (Phase 12):**
-- [Phase 12, Plan 01]: large-v3-turbo replaces distil-large-v3.5 — all distil-whisper models are English-only
-- [Phase 12, Plan 01]: language="de" hardcoded in AnalysisServiceImpl — multilingual UI selector deferred
-- [Phase 12, Plan 01]: Analytics panel requires speakerStats.length > 1, not determinedSpeakers — works without LLM
-- [Phase 12, Plan 01]: Maven multi-module requires `mvn clean install` from root POM to rebuild dependency modules
-- [Phase 12, Plan 02]: Full pipeline LLM validation deferred — Ollama server unavailable during testing
-- [Phase 12, Plan 02]: Graceful degradation when Ollama unreachable is open question for Phase 13
-
-**v2.0 decisions (Phases 8-11):**
-- [Phase 08, Plan 01]: distil-large-v3 identified as leading transcription candidate (525MB model, 0.30 RTF, proper punctuation)
-- [Phase 08, Plan 01]: PyTorch 2.6+ requires weights_only monkeypatch for WhisperX/pyannote — may affect production Dockerfile
-- [Phase 08, Plan 02]: pyannote retained for diarization — diarize library over-segments (8 speakers on 3-speaker audio)
-- [Phase 08, Plan 02]: Hybrid pipeline recommended: faster-whisper transcription + pyannote diarization + WhisperX alignment
-- [Phase 08, Plan 02]: Full recommendations in 08-RECOMMENDATION.md
-- [Phase 09, Plan 01]: distil-large-v3.5 chosen over v3 — 889MB vs 1682MB memory, 0.289 vs 0.295 RTF, better text quality
-- [Phase 09, Plan 01]: Conductor registration made graceful — services start standalone when orchestrator unavailable
-- [Phase 10, Plan 01]: Health checks at trigger time, not startup — diarization loads ML models slowly
-- [Phase 10, Plan 01]: Graceful degradation — requested mode downgrades if services unavailable
-- [Phase 10, Plan 02]: Conductor SWITCH with value-param evaluator for pipeline mode branching
-- [Phase 10, Plan 02]: transcription_only skips pyannote entirely (~10-15s CPU savings), keeps alignment
-- [Phase 10, Plan 02]: WorkflowMigrationService always updates workflows — no skip-if-exists for versioned definitions, warns and proceeds
-- [Phase 11, Plan 01]: getServiceHealth() added to PipelineModeResolver — centralized health check exposure for status endpoint
-- [Phase 11, Plan 01]: Maven CLI requires JDK 21 (JAVA_HOME=/opt/homebrew/opt/openjdk@21/...) — JDK 25 breaks Lombok annotation processing
-- [Phase 11, Plan 02]: definitionOfRounds only required for full mode — non-full modes skip the check
-- [Phase 11, Plan 02]: pyannote diarization pipeline lazy-loaded — allows transcription_only without HF_TOKEN
-- [Phase 11, Plan 02]: vad_filter=True on faster-whisper to prevent early transcription cutoff
-- [Phase 11, Plan 02]: Conductor SWITCH branches require globally unique taskReferenceNames — even across branches
-- [Phase 11, Plan 02]: Local profile service-url must match actual server port (8081), not Conductor (8080)
-- [Phase 11, Plan 02]: speaker-diarization-service .env had Windows line endings (\r\n) causing HF_TOKEN auth failures
+All v1.0 decisions logged in PROJECT.md Key Decisions table.
+All v2.0 decisions archived in milestones/v2.0-ROADMAP.md.
 
 ### Deferred Issues
 
@@ -107,11 +53,10 @@ None.
 ### Roadmap Evolution
 
 - v1.0 shipped 2026-01-25: Full local wargame analysis platform, 7 phases
-- v2.0 created 2026-04-13: Modular CPU-only platform, 6 phases (Phase 8-13) — selective services, model research (Voxtral etc.), lighter pipeline modes
-- Phase 13 added 2026-04-14: One-Click Services — containerize all app services in docker-compose, UI toggle for non-technical users
+- v2.0 shipped 2026-04-15: Modular CPU-only platform, 6 phases (8-13) — zero infrastructure, Electron desktop app, portable runtimes
 
 ## Session Continuity
 
 Last session: 2026-04-15
-Stopped at: Phase 13 complete — v2.0 milestone complete
-Resume file: .planning/phases/13-one-click-services/13-07-SUMMARY.md
+Stopped at: v2.0 milestone complete
+Resume file: .planning/MILESTONES.md
