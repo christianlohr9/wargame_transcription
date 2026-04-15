@@ -1,0 +1,40 @@
+appId: com.blackbox.wargaming
+productName: Blackbox Wargaming
+directories:
+  output: dist-electron
+
+mac:
+  target:
+    - target: dir
+      arch: [x64, arm64]
+  icon: build/icon.icns
+
+win:
+  target:
+    - target: nsis
+      arch: [x64]
+  icon: build/icon.ico
+
+nsis:
+  oneClick: false
+  perMachine: false
+  allowToChangeInstallationDirectory: true
+  deleteAppDataOnUninstall: false
+
+extraResources:
+  - from: resources/runtime/java
+    to: runtime/java
+    filter: ["**/*"]
+  - from: resources/runtime/python
+    to: runtime/python
+    filter: ["**/*"]
+  - from: resources/models
+    to: models
+    filter: ["**/*"]
+  - from: resources/app
+    to: app
+    filter: ["**/*"]
+
+asar: true
+asarUnpack:
+  - "**/*.node"

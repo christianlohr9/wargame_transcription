@@ -5,7 +5,11 @@
   "main": "electron/main.js",
   "scripts": {
     "start": "electron .",
-    "build": "electron-builder"
+    "build": "electron-builder",
+    "build:frontend": "cd ../blackbox/frontend && npx quasar build",
+    "build:mac": "electron-builder --mac --dir",
+    "build:win": "electron-builder --win",
+    "build:all": "bash scripts/build-app.sh"
   },
   "dependencies": {
     "electron-log": "^5.3.0",
