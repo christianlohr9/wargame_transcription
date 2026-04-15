@@ -10,11 +10,11 @@ See: .planning/PROJECT.md (updated 2026-01-25)
 ## Current Position
 
 Phase: 13 of 13 (one-click-services) — IN PROGRESS
-Plan: 04 complete (Frontend transcript export — PDF, DOCX, TXT)
-Status: Plan 04 done, ready for Plan 05 (Electron desktop shell)
-Last activity: 2026-04-15 — Client-side transcript export with pdfmake, docx, file-saver
+Plan: 05 complete (Electron desktop shell with process management)
+Status: Plan 05 done, ready for Plan 06 (Portable runtimes)
+Last activity: 2026-04-15 — Electron app shell, process supervisor, health polling, IPC bridge
 
-Progress: █████████████████░░░ 92% (v2.0 Phase 13: 4/7 plans complete)
+Progress: █████████████████░░░ 94% (v2.0 Phase 13: 5/7 plans complete)
 
 ## Performance Metrics
 
@@ -55,6 +55,10 @@ All v1.0 decisions logged in PROJECT.md Key Decisions table with outcomes marked
 - [Phase 13, Plan 04]: Dynamic import for pdfmake — PDF chunks only loaded on export to keep initial bundle lean
 - [Phase 13, Plan 04]: Speaker name resolution in exports reuses determinedSpeakers mapping from workspace model
 - [Phase 13, Plan 04]: Composable pattern (useTranscriptExport) for stateless export functions, no store dependency
+- [Phase 13, Plan 05]: Custom app:// protocol for serving SPA dist/ — loadFile fails with absolute asset paths under file://
+- [Phase 13, Plan 05]: HealthChecker.setState() for immediate UI feedback on toggle — can't wait for 5s poll cycle
+- [Phase 13, Plan 05]: Services default to 'stopped' — only 'starting' when processManager actually spawns them
+- [Phase 13, Plan 05]: Separate blackbox-desktop/ package keeps Electron decoupled from frontend build
 
 **v2.0 decisions (Phase 12):**
 - [Phase 12, Plan 01]: large-v3-turbo replaces distil-large-v3.5 — all distil-whisper models are English-only
@@ -103,5 +107,5 @@ None.
 ## Session Continuity
 
 Last session: 2026-04-15
-Stopped at: Phase 13, Plan 04 complete — ready for Plan 05
-Resume file: .planning/phases/13-one-click-services/13-04-SUMMARY.md
+Stopped at: Phase 13, Plan 05 complete — ready for Plan 06
+Resume file: .planning/phases/13-one-click-services/13-05-SUMMARY.md

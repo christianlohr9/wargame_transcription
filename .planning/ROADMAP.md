@@ -97,7 +97,7 @@ Plans:
 - [x] 13-02: Convert Python services to REST-only (remove Conductor dependency)
 - [x] 13-03: Replace MongoDB with H2 + filesystem storage, embed Tika
 - [x] 13-04: Frontend transcript export (PDF, DOCX, TXT)
-- [ ] 13-05: Electron desktop shell with process management
+- [x] 13-05: Electron desktop shell with process management
 - [ ] 13-06: Portable runtimes (jlink JRE, conda-pack Python, model bundling)
 - [ ] 13-07: Packaging (electron-builder, NSIS installer) & final verification
 
@@ -117,6 +117,6 @@ Plans:
 | 10. Modular Pipeline | v2.0 | 2/2 | Complete | 2026-04-13 |
 | 11. Frontend Adaptation | v2.0 | 2/2 | Complete | 2026-04-14 |
 | 12. Integration Testing | v2.0 | 2/2 | Complete | 2026-04-15 |
-| 13. One-Click Services | v2.0 | 4/7 | In progress | - |
+| 13. One-Click Services | v2.0 | 5/7 | In progress | - |
 
 **Total: 13 phases, 10 complete + 6 new**
