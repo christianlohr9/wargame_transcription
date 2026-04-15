@@ -10,11 +10,11 @@ See: .planning/PROJECT.md (updated 2026-01-25)
 ## Current Position
 
 Phase: 13 of 13 (one-click-services) — IN PROGRESS
-Plan: 03 complete (H2 embedded DB + filesystem storage + embedded Tika)
-Status: Plan 03 done, ready for Plan 04 (Frontend transcript export)
-Last activity: 2026-04-15 — MongoDB replaced with H2, GridFS with filesystem, Tika embedded, docker-compose deleted
+Plan: 04 complete (Frontend transcript export — PDF, DOCX, TXT)
+Status: Plan 04 done, ready for Plan 05 (Electron desktop shell)
+Last activity: 2026-04-15 — Client-side transcript export with pdfmake, docx, file-saver
 
-Progress: █████████████████░░░ 90% (v2.0 Phase 13: 3/7 plans complete)
+Progress: █████████████████░░░ 92% (v2.0 Phase 13: 4/7 plans complete)
 
 ## Performance Metrics
 
@@ -52,6 +52,9 @@ All v1.0 decisions logged in PROJECT.md Key Decisions table with outcomes marked
 - [Phase 13, Plan 03]: FileStorageService pattern: {base}/{subdir}/{id}/{filename} + metadata.json sidecar
 - [Phase 13, Plan 03]: Package renamed persistance.mongodb -> persistance.jpa for clarity
 - [Phase 13, Plan 03]: docker-compose.yml deleted — all 7 infrastructure services eliminated
+- [Phase 13, Plan 04]: Dynamic import for pdfmake — PDF chunks only loaded on export to keep initial bundle lean
+- [Phase 13, Plan 04]: Speaker name resolution in exports reuses determinedSpeakers mapping from workspace model
+- [Phase 13, Plan 04]: Composable pattern (useTranscriptExport) for stateless export functions, no store dependency
 
 **v2.0 decisions (Phase 12):**
 - [Phase 12, Plan 01]: large-v3-turbo replaces distil-large-v3.5 — all distil-whisper models are English-only
@@ -100,5 +103,5 @@ None.
 ## Session Continuity
 
 Last session: 2026-04-15
-Stopped at: Phase 13, Plan 03 complete — ready for Plan 04
-Resume file: .planning/phases/13-one-click-services/13-03-SUMMARY.md
+Stopped at: Phase 13, Plan 04 complete — ready for Plan 05
+Resume file: .planning/phases/13-one-click-services/13-04-SUMMARY.md
