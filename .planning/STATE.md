@@ -10,11 +10,11 @@ See: .planning/PROJECT.md (updated 2026-01-25)
 ## Current Position
 
 Phase: 13 of 13 (one-click-services) — IN PROGRESS
-Plan: 01 complete (replace Conductor with direct orchestration)
-Status: Plan 01 done, ready for Plan 02 (Python REST-only conversion)
-Last activity: 2026-04-15 — Conductor replaced with PipelineOrchestrationService, 20 files deleted, 4 infra deps eliminated
+Plan: 02 complete (Python REST-only conversion + docker-compose cleanup)
+Status: Plan 02 done, ready for Plan 03 (Replace MongoDB with H2, embed Tika)
+Last activity: 2026-04-15 — conductor-python removed from both Python services, 4 infra services removed from docker-compose
 
-Progress: █████████████████░░░ 85% (v2.0 Phase 13: 1/7 plans complete)
+Progress: █████████████████░░░ 87% (v2.0 Phase 13: 2/7 plans complete)
 
 ## Performance Metrics
 
@@ -44,7 +44,9 @@ All v1.0 decisions logged in PROJECT.md Key Decisions table with outcomes marked
 **v2.0 decisions (Phase 13):**
 - [Phase 13, Plan 01]: Direct Java if/else replaces Conductor SWITCH — no workflow engine library needed
 - [Phase 13, Plan 01]: HTTP retry (3 retries, 2s backoff) replaces Conductor's transparent retry for Python service calls
-- [Phase 13, Plan 01]: Conductor references remain in docker-compose.yml — out of scope for Java backend cleanup
+- [Phase 13, Plan 02]: pipeline_mode added to /transcriptions REST endpoint — was only available via Conductor task
+- [Phase 13, Plan 02]: 600s read timeout on RestTemplate for diarization ML inference
+- [Phase 13, Plan 02]: docker-compose reduced from 7 to 3 services (mongodb, minio, tika remain)
 
 **v2.0 decisions (Phase 12):**
 - [Phase 12, Plan 01]: large-v3-turbo replaces distil-large-v3.5 — all distil-whisper models are English-only
@@ -93,5 +95,5 @@ None.
 ## Session Continuity
 
 Last session: 2026-04-15
-Stopped at: Phase 13, Plan 01 complete — ready for Plan 02
-Resume file: .planning/phases/13-one-click-services/13-01-SUMMARY.md
+Stopped at: Phase 13, Plan 02 complete — ready for Plan 03
+Resume file: .planning/phases/13-one-click-services/13-02-SUMMARY.md
