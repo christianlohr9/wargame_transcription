@@ -10,11 +10,11 @@ See: .planning/PROJECT.md (updated 2026-01-25)
 ## Current Position
 
 Phase: 13 of 13 (one-click-services) — IN PROGRESS
-Plan: 05 complete (Electron desktop shell with process management)
-Status: Plan 05 done, ready for Plan 06 (Portable runtimes)
-Last activity: 2026-04-15 — Electron app shell, process supervisor, health polling, IPC bridge
+Plan: 06 complete (Portable runtimes — jlink JRE, conda-pack Python, model bundling)
+Status: Plan 06 done, ready for Plan 07 (Packaging — electron-builder, NSIS installer)
+Last activity: 2026-04-15 — jlink/conda-pack build scripts, processManager runtime resolution
 
-Progress: █████████████████░░░ 94% (v2.0 Phase 13: 5/7 plans complete)
+Progress: █████████████████░░░ 96% (v2.0 Phase 13: 6/7 plans complete)
 
 ## Performance Metrics
 
@@ -59,6 +59,10 @@ All v1.0 decisions logged in PROJECT.md Key Decisions table with outcomes marked
 - [Phase 13, Plan 05]: HealthChecker.setState() for immediate UI feedback on toggle — can't wait for 5s poll cycle
 - [Phase 13, Plan 05]: Services default to 'stopped' — only 'starting' when processManager actually spawns them
 - [Phase 13, Plan 05]: Separate blackbox-desktop/ package keeps Electron decoupled from frontend build
+- [Phase 13, Plan 06]: resolveRuntimePaths() fallback — bundled paths preferred, system PATH fallback for dev
+- [Phase 13, Plan 06]: Known Spring Boot module set as jdeps fallback for fat JAR analysis
+- [Phase 13, Plan 06]: CPU-only PyTorch in conda-pack (~2-3GB vs ~5GB with CUDA)
+- [Phase 13, Plan 06]: HF_HOME/WHISPER_CACHE env vars injected by processManager when bundled models exist
 
 **v2.0 decisions (Phase 12):**
 - [Phase 12, Plan 01]: large-v3-turbo replaces distil-large-v3.5 — all distil-whisper models are English-only
@@ -107,5 +111,5 @@ None.
 ## Session Continuity
 
 Last session: 2026-04-15
-Stopped at: Phase 13, Plan 05 complete — ready for Plan 06
-Resume file: .planning/phases/13-one-click-services/13-05-SUMMARY.md
+Stopped at: Phase 13, Plan 06 complete — ready for Plan 07
+Resume file: .planning/phases/13-one-click-services/13-06-SUMMARY.md
