@@ -1,9 +1,45 @@
 const { spawn } = require('child_process');
 const path = require('path');
+const fs = require('fs');
 const log = require('electron-log');
 const treeKill = require('tree-kill');
 
 const isWindows = process.platform === 'win32';
+
+/**
+ * Resolve runtime paths for bundled (portable) or system-installed runtimes.
+ * When bundled runtimes exist under resources/, use them; otherwise fall back
+ * to expecting the tools on the system PATH.
+ *
+ * @param {string} basePath - The blackbox-desktop/ directory
+ * @returns {object} Resolved paths for java, python, JAR, service cwds, models
+ */
+function resolveRuntimePaths(basePath) {
+  const resourcesPath = basePath;
+
+  const jreBin = path.join(resourcesPath, 'resources', 'runtime', 'java', 'bin',
+    isWindows ? 'javaw.exe' : 'java');
+  const pythonBin = path.join(resourcesPath, 'resources', 'runtime', 'python',
+    isWindows ? 'python.exe' : path.join('bin', 'python'));
+  const jarPath = path.join(resourcesPath, 'resources', 'app', 'blackbox.jar');
+
+  const bundledDiarization = path.join(resourcesPath, 'resources', 'app', 'diarization');
+  const bundledChat = path.join(resourcesPath, 'resources', 'app', 'chat');
+  const modelsPath = path.join(resourcesPath, 'resources', 'models');
+
+  return {
+    java: fs.existsSync(jreBin) ? jreBin : (isWindows ? 'javaw.exe' : 'java'),
+    python: fs.existsSync(pythonBin) ? pythonBin : (isWindows ? 'python.exe' : 'python3'),
+    jarPath: fs.existsSync(jarPath) ? jarPath : 'blackbox.jar',
+    diarizationCwd: fs.existsSync(bundledDiarization)
+      ? bundledDiarization
+      : path.join(resourcesPath, '..', 'speaker-diarization-service'),
+    chatCwd: fs.existsSync(bundledChat)
+      ? bundledChat
+      : path.join(resourcesPath, '..', 'ask-chat-service'),
+    modelsPath,
+  };
+}
 
 /**
  * Service definitions with platform-specific binary names.
@@ -33,8 +69,12 @@ class ProcessManager {
   constructor(basePath) {
     /** @type {string} Base path where service binaries/jars live */
     this.basePath = basePath || process.cwd();
+    /** @type {object} Resolved runtime paths (bundled or system) */
+    this.runtimePaths = resolveRuntimePaths(this.basePath);
     /** @type {Map<string, {process: ChildProcess|null, status: string, pid: number|null}>} */
     this.services = new Map();
+
+    log.info('Runtime paths resolved:', JSON.stringify(this.runtimePaths, null, 2));
 
     for (const name of Object.keys(SERVICE_DEFINITIONS)) {
       this.services.set(name, { process: null, status: 'stopped', pid: null });
@@ -60,15 +100,40 @@ class ProcessManager {
       return true;
     }
 
-    const command = overrides.command || definition.command;
-    const args = overrides.args || definition.args;
-    const cwd = overrides.cwd || this.basePath;
+    // Resolve command, args, cwd, and env from bundled runtimes
+    const rp = this.runtimePaths;
+    let command, args, cwd;
+    const env = { ...process.env };
+
+    if (name === 'backend') {
+      command = overrides.command || rp.java;
+      args = overrides.args || ['-jar', rp.jarPath];
+      cwd = overrides.cwd || this.basePath;
+    } else if (name === 'diarization') {
+      command = overrides.command || rp.python;
+      args = overrides.args || definition.args;
+      cwd = overrides.cwd || rp.diarizationCwd;
+      // Point model caches at bundled models directory if it exists
+      if (fs.existsSync(rp.modelsPath)) {
+        env.HF_HOME = path.join(rp.modelsPath, 'huggingface');
+        env.WHISPER_CACHE = path.join(rp.modelsPath, 'whisper');
+      }
+    } else if (name === 'chat') {
+      command = overrides.command || rp.python;
+      args = overrides.args || definition.args;
+      cwd = overrides.cwd || rp.chatCwd;
+    } else {
+      command = overrides.command || definition.command;
+      args = overrides.args || definition.args;
+      cwd = overrides.cwd || this.basePath;
+    }
 
     log.info(`Starting service ${name}: ${command} ${args.join(' ')} in ${cwd}`);
 
     try {
       const child = spawn(command, args, {
         cwd,
+        env,
         windowsHide: true,
         stdio: ['ignore', 'pipe', 'pipe'],
       });
@@ -170,4 +235,4 @@ class ProcessManager {
   }
 }
 
-module.exports = { ProcessManager, SERVICE_DEFINITIONS };
+module.exports = { ProcessManager, SERVICE_DEFINITIONS, resolveRuntimePaths };
