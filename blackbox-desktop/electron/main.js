@@ -1,4 +1,4 @@
-const { app, BrowserWindow, ipcMain } = require('electron');
+const { app, BrowserWindow, ipcMain, protocol, net } = require('electron');
 const path = require('path');
 const fs = require('fs');
 const os = require('os');
@@ -20,6 +20,18 @@ function isDevMode() {
 app.whenReady().then(() => {
   const basePath = path.join(__dirname, '..');
 
+  // --- Custom protocol to serve dist/ with correct MIME types ---
+  if (!isDevMode()) {
+    const distDir = path.join(basePath, 'dist');
+    protocol.handle('app', (request) => {
+      let urlPath = new URL(request.url).pathname;
+      // Strip leading slash; default to index.html
+      if (urlPath === '/' || urlPath === '') urlPath = '/index.html';
+      const filePath = path.join(distDir, urlPath);
+      return net.fetch('file://' + filePath);
+    });
+  }
+
   // --- Process Manager ---
   processManager = new ProcessManager(basePath);
 
@@ -28,6 +40,7 @@ app.whenReady().then(() => {
 
   // --- Health Checker ---
   healthChecker = new HealthChecker();
+  healthChecker.setState('backend', 'starting');
   healthChecker.start();
 
   // Forward health status changes to renderer
@@ -60,9 +73,8 @@ app.whenReady().then(() => {
     mainWindow.loadURL('http://localhost:9003');
     mainWindow.webContents.openDevTools();
   } else {
-    const distIndex = path.join(__dirname, '..', 'dist', 'index.html');
-    log.info(`Running in production mode — loading ${distIndex}`);
-    mainWindow.loadFile(distIndex);
+    log.info('Running in production mode — loading app://dist/');
+    mainWindow.loadURL('app://dist/');
   }
 
   mainWindow.on('closed', () => {
@@ -76,9 +88,11 @@ app.whenReady().then(() => {
 
   ipcMain.handle('toggle-service', async (_event, name, enabled) => {
     if (enabled) {
+      healthChecker.setState(name, 'starting');
       processManager.startService(name);
     } else {
       await processManager.stopService(name);
+      healthChecker.setState(name, 'stopped');
     }
     return healthChecker.getStatus();
   });

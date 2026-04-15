@@ -31,6 +31,9 @@ class HealthChecker {
     /** @type {function|null} */
     this._onChange = null;
 
+    /** @type {Map<string, number>} tracks when 'starting' began */
+    this._startingAt = new Map();
+
     for (const svc of this.services) {
       this.status.set(svc.name, HealthState.STOPPED);
     }
@@ -41,10 +44,7 @@ class HealthChecker {
    */
   start() {
     for (const svc of this.services) {
-      // Set initial state to starting
-      this._setState(svc.name, HealthState.STARTING);
-
-      // Poll immediately, then on interval
+      // Poll immediately, then on interval — state stays 'stopped' until a response arrives
       this._poll(svc);
       const id = setInterval(() => this._poll(svc), svc.interval || 5000);
       this._intervals.set(svc.name, id);
@@ -82,6 +82,15 @@ class HealthChecker {
   }
 
   /**
+   * Manually set a service state (e.g. to 'starting' when process is spawned).
+   * @param {string} name
+   * @param {string} state - one of HealthState values
+   */
+  setState(name, state) {
+    this._setState(name, state);
+  }
+
+  /**
    * Poll a single service's health endpoint.
    * @param {{name: string, healthUrl: string}} svc
    * @private
@@ -109,8 +118,16 @@ class HealthChecker {
     req.on('error', () => {
       // Connection refused or timeout — service is unreachable
       const current = this.status.get(svc.name);
+      if (current === HealthState.STOPPED) {
+        // Not expected to be running — stay stopped
+        return;
+      }
       if (current === HealthState.STARTING) {
-        // Keep starting state while waiting for first successful response
+        // Keep starting state, but timeout after 60s
+        const startedAt = this._startingAt.get(svc.name) || Date.now();
+        if (Date.now() - startedAt > 60000) {
+          this._setState(svc.name, HealthState.UNHEALTHY);
+        }
         return;
       }
       this._setState(svc.name, HealthState.UNHEALTHY);
@@ -134,6 +151,11 @@ class HealthChecker {
     if (prev !== newState) {
       log.info(`Health [${name}]: ${prev} -> ${newState}`);
       this.status.set(name, newState);
+      if (newState === HealthState.STARTING) {
+        this._startingAt.set(name, Date.now());
+      } else {
+        this._startingAt.delete(name);
+      }
       if (this._onChange) {
         this._onChange(this.getStatus());
       }
