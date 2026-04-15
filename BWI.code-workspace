@@ -1,0 +1,28 @@
+{
+	"folders": [
+		{
+			"path": "speaker-diarization-service",
+			"name": "Speaker Diarization Service"
+		},
+		{
+			"path": "ask-chat-service",
+			"name": "Ask Chat Service"
+		},
+		{
+			"path": "blackbox",
+			"name": "Speech Diarrhea Service"
+		},
+		{
+			"path": "BWI Hackathon 2025",
+			"name": "BWI Hackathon 2025"
+		},
+		{
+			"path": ".",
+			"name": "Organization Root"
+		}
+	],
+	"settings": {
+		"java.compile.nullAnalysis.mode": "automatic",
+		"java.configuration.updateBuildConfiguration": "interactive"
+	}
+}
