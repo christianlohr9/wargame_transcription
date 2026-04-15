@@ -10,11 +10,11 @@ See: .planning/PROJECT.md (updated 2026-01-25)
 ## Current Position
 
 Phase: 13 of 13 (one-click-services) — IN PROGRESS
-Plan: 02 complete (Python REST-only conversion + docker-compose cleanup)
-Status: Plan 02 done, ready for Plan 03 (Replace MongoDB with H2, embed Tika)
-Last activity: 2026-04-15 — conductor-python removed from both Python services, 4 infra services removed from docker-compose
+Plan: 03 complete (H2 embedded DB + filesystem storage + embedded Tika)
+Status: Plan 03 done, ready for Plan 04 (Frontend transcript export)
+Last activity: 2026-04-15 — MongoDB replaced with H2, GridFS with filesystem, Tika embedded, docker-compose deleted
 
-Progress: █████████████████░░░ 87% (v2.0 Phase 13: 2/7 plans complete)
+Progress: █████████████████░░░ 90% (v2.0 Phase 13: 3/7 plans complete)
 
 ## Performance Metrics
 
@@ -47,6 +47,11 @@ All v1.0 decisions logged in PROJECT.md Key Decisions table with outcomes marked
 - [Phase 13, Plan 02]: pipeline_mode added to /transcriptions REST endpoint — was only available via Conductor task
 - [Phase 13, Plan 02]: 600s read timeout on RestTemplate for diarization ML inference
 - [Phase 13, Plan 02]: docker-compose reduced from 7 to 3 services (mongodb, minio, tika remain)
+- [Phase 13, Plan 03]: JSON CLOB columns via @Convert for nested DOs — simpler than @ElementCollection for 3+ nesting levels
+- [Phase 13, Plan 03]: File-based H2 (jdbc:h2:file:./data/blackbox-db) for persistent data across restarts
+- [Phase 13, Plan 03]: FileStorageService pattern: {base}/{subdir}/{id}/{filename} + metadata.json sidecar
+- [Phase 13, Plan 03]: Package renamed persistance.mongodb -> persistance.jpa for clarity
+- [Phase 13, Plan 03]: docker-compose.yml deleted — all 7 infrastructure services eliminated
 
 **v2.0 decisions (Phase 12):**
 - [Phase 12, Plan 01]: large-v3-turbo replaces distil-large-v3.5 — all distil-whisper models are English-only
@@ -95,5 +100,5 @@ None.
 ## Session Continuity
 
 Last session: 2026-04-15
-Stopped at: Phase 13, Plan 02 complete — ready for Plan 03
-Resume file: .planning/phases/13-one-click-services/13-02-SUMMARY.md
+Stopped at: Phase 13, Plan 03 complete — ready for Plan 04
+Resume file: .planning/phases/13-one-click-services/13-03-SUMMARY.md
