@@ -88,13 +88,18 @@ Plans:
 
 #### Phase 13: One-Click Services
 
-**Goal**: Containerize all app services (backend, diarization, chat) in docker-compose so `docker compose up` starts the full platform. Add a UI toggle to start/stop optional services (diarization, chat) without touching a terminal. Add transcript download/export. Target audience: people who have never used a CLI or IDE.
+**Goal**: Package the platform as a one-click Electron desktop app for non-technical users. Replace all infrastructure services (Conductor, MongoDB, Redis, ES, RabbitMQ, MinIO, Tika) with embedded alternatives (direct orchestration, H2, filesystem, embedded Tika). Add transcript export (PDF/DOCX/TXT). Bundle portable runtimes (jlink JRE, conda-pack Python) for zero-install deployment. Target: Windows HP EliteBook, no admin rights, fully air-gapped for VS-NfD.
 **Depends on**: Phase 12
-**Research**: Unlikely (Docker Compose profiles, Docker API patterns)
-**Plans**: TBD
+**Research**: Completed (13-RESEARCH.md — Electron + portable runtimes, Docker NOT viable on restricted Windows)
 
 Plans:
-- [ ] 13-01: TBD (run /gsd:plan-phase 13 to break down)
+- [ ] 13-01: Replace Conductor with direct Spring Boot orchestration
+- [ ] 13-02: Convert Python services to REST-only (remove Conductor dependency)
+- [ ] 13-03: Replace MongoDB with H2 + filesystem storage, embed Tika
+- [ ] 13-04: Frontend transcript export (PDF, DOCX, TXT)
+- [ ] 13-05: Electron desktop shell with process management
+- [ ] 13-06: Portable runtimes (jlink JRE, conda-pack Python, model bundling)
+- [ ] 13-07: Packaging (electron-builder, NSIS installer) & final verification
 
 ## Progress
 
@@ -112,6 +117,6 @@ Plans:
 | 10. Modular Pipeline | v2.0 | 2/2 | Complete | 2026-04-13 |
 | 11. Frontend Adaptation | v2.0 | 2/2 | Complete | 2026-04-14 |
 | 12. Integration Testing | v2.0 | 2/2 | Complete | 2026-04-15 |
-| 13. One-Click Services | v2.0 | 0/? | Not started | - |
+| 13. One-Click Services | v2.0 | 0/7 | Planned | - |
 
 **Total: 13 phases, 10 complete + 6 new**
