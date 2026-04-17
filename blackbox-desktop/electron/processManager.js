@@ -115,6 +115,8 @@ class ProcessManager {
       command = overrides.command || rp.java;
       args = overrides.args || ['-jar', rp.jarPath];
       cwd = overrides.cwd || this.basePath;
+      // Backend needs to know where the chat service lives
+      env.BACKEND_ASK_CHAT_BASE_URL = `http://localhost:${SERVICE_DEFINITIONS.chat.port}`;
     } else if (name === 'diarization') {
       command = overrides.command || rp.python;
       args = overrides.args || definition.args;
