@@ -5,6 +5,7 @@ Creates a portable, self-contained Python environment so users don't need Python
 ## Prerequisites
 
 - **Miniconda or Anaconda** — provides `conda` command
+- **C++ compiler** — required for building llama-cpp-python native extension (cmake + gcc on Linux, Xcode CLT on macOS, MSVC/Build Tools on Windows)
 - **Internet access** — to download packages and models
 - **HF_TOKEN** (optional) — Hugging Face token for pyannote model download
 
@@ -24,10 +25,12 @@ Builds the portable Python environment.
 1. Creates a conda environment `blackbox-portable` with Python 3.12
 2. Installs CPU-only PyTorch (no CUDA — target is CPU-only HP EliteBook)
 3. Installs requirements from `speaker-diarization-service/requirements.txt` and `ask-chat-service/requirements.txt`
-4. Packs the environment with `conda-pack`
-5. Extracts to `blackbox-desktop/resources/runtime/python/`
-6. Runs `conda-unpack` to fix hardcoded path prefixes
-7. Copies Python service source code to `resources/app/diarization/` and `resources/app/chat/`
+4. Installs `llama-cpp-python` with CPU-only build (`CMAKE_ARGS="-DGGML_CUDA=OFF"`)
+5. Packs the environment with `conda-pack`
+6. Extracts to `blackbox-desktop/resources/runtime/python/`
+7. Runs `conda-unpack` to fix hardcoded path prefixes
+8. Verifies `llama-cpp-python` imports correctly from the packed environment
+9. Copies Python service source code to `resources/app/diarization/` and `resources/app/chat/`
 
 ### bundle-models.sh
 
@@ -78,11 +81,12 @@ blackbox-desktop/
 
 | Component | Approximate Size |
 |-----------|-----------------|
-| Python runtime (CPU PyTorch) | 2-3 GB |
+| Python runtime (CPU PyTorch + llama-cpp-python) | 2-3 GB |
 | faster-whisper large-v3-turbo | 1.5 GB |
 | pyannote models | 500 MB |
+| SmolLM3-3B GGUF (via bundle-llm-model.sh) | ~2 GB |
 | Service source code | ~10 MB |
-| **Total** | **~4-5 GB** |
+| **Total** | **~6-7 GB** |
 
 ## Model Access Requirements
 
@@ -102,6 +106,21 @@ Without HF_TOKEN, `bundle-models.sh` will skip pyannote models and only download
 ### conda-pack fails
 
 Ensure all packages are from conda-forge or pip. Packages installed with `--editable` mode cannot be packed. If a package causes issues, try installing it from conda-forge instead of pip.
+
+### llama-cpp-python build fails
+
+The `llama-cpp-python` package compiles a native C++ extension during install. It requires:
+- **cmake** and a C++ compiler (gcc, clang, or MSVC)
+- On Windows: Install "Build Tools for Visual Studio" or use `conda install cmake`
+- On macOS: `xcode-select --install`
+- The build uses `CMAKE_ARGS="-DGGML_CUDA=OFF"` to skip CUDA (saves ~2GB, CPU-only target).
+
+### llama-cpp-python fails in packed environment
+
+If the verification step reports that `from llama_cpp import Llama` fails after conda-pack, the native extension may not relocate correctly. Fallback options:
+1. Bundle the `llama-server` binary separately (download from llama.cpp releases)
+2. Use `llamafile` as a standalone executable
+3. Install llama-cpp-python directly in the extracted environment post-unpack
 
 ### "No module named X" at runtime
 

@@ -1,5 +1,30 @@
 # Project Milestones: Blackbox AI Local Setup
 
+## v2.1 Guppy LLM (Shipped: 2026-04-17)
+
+**Delivered:** Local CPU-only LLM backend (llama-cpp-python) for offline wargame summarization on air-gapped machines, with Electron settings UI for backend selection and model bundling scripts.
+
+**Phases completed:** 14 (5 plans total)
+
+**Key accomplishments:**
+- LlamaCppChatService for CPU-only local LLM inference via llama-cpp-python
+- Electron-store settings persistence with LLM backend selection and IPC bridge
+- Frontend settings panel with llamacpp/ollama toggle and toast notifications
+- LLM model bundling scripts (SmolLM3-3B Q4_K_M GGUF) and conda-pack runtime integration
+- End-to-end verification across 12 integration layers
+
+**Stats:**
+- 24 files created/modified
+- +1,895 / -26 lines
+- 1 phase, 5 plans, ~11 tasks
+- 1 day (2026-04-17), ~116 min execution time
+
+**Git range:** `00a3943` → `b624363`
+
+**What's next:** Deploy and test on target Windows HP EliteBook. Fix pre-existing JRE bundling issue (missing jdk.management module).
+
+---
+
 ## v2.0 Modular CPU-Only Platform (Shipped: 2026-04-15)
 
 **Delivered:** Self-contained Electron desktop app with zero-infrastructure deployment — embedded H2 database, filesystem storage, portable JRE/Python runtimes, three pipeline modes with graceful degradation, and NSIS per-user installer for air-gapped Windows machines.

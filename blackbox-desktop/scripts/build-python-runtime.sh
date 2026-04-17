@@ -77,6 +77,12 @@ fi
 
 # Ensure uvicorn is installed (needed to run both services)
 conda run -n "$ENV_NAME" pip install uvicorn -q
+
+# Install llama-cpp-python for local LLM inference (CPU-only, no CUDA)
+echo "    Installing llama-cpp-python (CPU-only)..."
+conda run -n "$ENV_NAME" env CMAKE_ARGS="-DGGML_CUDA=OFF" pip install llama-cpp-python -q
+echo "    llama-cpp-python installed."
+
 echo "    All requirements installed."
 
 ##############################################################################
@@ -122,6 +128,30 @@ else
   echo "    WARNING: conda-unpack not found — paths may need manual fixing"
 fi
 echo "    conda-unpack complete."
+
+##############################################################################
+# Step 6b — Verify llama-cpp-python in packed environment
+##############################################################################
+echo ""
+echo ">>> Step 6b: Verifying llama-cpp-python in packed environment..."
+if [ -f "$PYTHON_OUTPUT/bin/python" ]; then
+  PACKED_PYTHON="$PYTHON_OUTPUT/bin/python"
+elif [ -f "$PYTHON_OUTPUT/python.exe" ]; then
+  PACKED_PYTHON="$PYTHON_OUTPUT/python.exe"
+else
+  echo "    WARNING: Could not find Python binary in packed runtime"
+  PACKED_PYTHON=""
+fi
+
+if [ -n "$PACKED_PYTHON" ]; then
+  if "$PACKED_PYTHON" -c "from llama_cpp import Llama; print('    llama_cpp OK')" 2>/dev/null; then
+    echo "    llama-cpp-python verified in packed environment."
+  else
+    echo "    WARNING: llama-cpp-python import failed in packed environment."
+    echo "    Fallback: may need to bundle llama-server binary separately."
+    echo "    See build-python-runtime.md for details."
+  fi
+fi
 
 ##############################################################################
 # Step 7 — Copy Python service source code

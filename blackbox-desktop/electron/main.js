@@ -6,6 +6,14 @@ const log = require('electron-log');
 const { ProcessManager } = require('./processManager');
 const { HealthChecker } = require('./healthChecker');
 
+// --- Settings Store (loaded async — electron-store v10 is ESM-only) ---
+const settingsSchema = {
+  llmBackend: { type: 'string', default: 'llamacpp' },
+  ollamaEndpoint: { type: 'string', default: 'http://localhost:11434' },
+  ollamaModel: { type: 'string', default: '' },
+};
+
+let store = null;
 let mainWindow = null;
 let processManager = null;
 let healthChecker = null;
@@ -17,7 +25,18 @@ function isDevMode() {
   return !fs.existsSync(distIndex);
 }
 
-app.whenReady().then(() => {
+app.whenReady().then(async () => {
+  // Dynamic import for ESM-only electron-store
+  const { default: Store } = await import('electron-store');
+  store = new Store({
+    schema: settingsSchema,
+    defaults: {
+      llmBackend: 'llamacpp',
+      ollamaEndpoint: 'http://localhost:11434',
+      ollamaModel: '',
+    },
+  });
+
   const basePath = path.join(__dirname, '..');
 
   // --- Custom protocol to serve dist/ with correct MIME types ---
@@ -33,7 +52,7 @@ app.whenReady().then(() => {
   }
 
   // --- Process Manager ---
-  processManager = new ProcessManager(basePath);
+  processManager = new ProcessManager(basePath, store);
 
   // Start backend service (always on)
   processManager.startService('backend');
@@ -69,8 +88,9 @@ app.whenReady().then(() => {
   });
 
   if (isDevMode()) {
-    log.info('Running in dev mode — loading from http://localhost:9003');
-    mainWindow.loadURL('http://localhost:9003');
+    const devPort = process.env.DEV_PORT || '9000';
+    log.info(`Running in dev mode — loading from http://localhost:${devPort}`);
+    mainWindow.loadURL(`http://localhost:${devPort}`);
     mainWindow.webContents.openDevTools();
   } else {
     log.info('Running in production mode — loading app://dist/');
@@ -102,6 +122,43 @@ app.whenReady().then(() => {
       platform: process.platform,
       memory: os.totalmem(),
     };
+  });
+
+  // --- Settings IPC Handlers ---
+  const validSettingsKeys = Object.keys(settingsSchema);
+
+  ipcMain.handle('get-settings', () => {
+    const settings = {};
+    for (const key of validSettingsKeys) {
+      settings[key] = store.get(key);
+    }
+    return settings;
+  });
+
+  ipcMain.handle('get-setting', (_event, key) => {
+    if (!validSettingsKeys.includes(key)) {
+      throw new Error(`Unknown setting key: ${key}`);
+    }
+    return store.get(key);
+  });
+
+  ipcMain.handle('set-setting', async (_event, { key, value }) => {
+    if (!validSettingsKeys.includes(key)) {
+      throw new Error(`Unknown setting key: ${key}`);
+    }
+    const oldValue = store.get(key);
+    store.set(key, value);
+    log.info(`Setting changed: ${key} = ${value}`);
+
+    // Restart chat service when LLM backend changes
+    if (key === 'llmBackend' && oldValue !== value) {
+      log.info(`LLM backend changed from ${oldValue} to ${value} — restarting chat service`);
+      healthChecker.setState('chat', 'starting');
+      await processManager.stopService('chat');
+      processManager.startService('chat');
+    }
+
+    return store.get(key);
   });
 });
 
