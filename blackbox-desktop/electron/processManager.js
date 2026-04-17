@@ -66,11 +66,17 @@ const SERVICE_DEFINITIONS = {
 };
 
 class ProcessManager {
-  constructor(basePath) {
+  /**
+   * @param {string} basePath - The blackbox-desktop/ directory
+   * @param {import('electron-store')} [settingsStore] - electron-store instance for reading LLM settings
+   */
+  constructor(basePath, settingsStore) {
     /** @type {string} Base path where service binaries/jars live */
     this.basePath = basePath || process.cwd();
     /** @type {object} Resolved runtime paths (bundled or system) */
     this.runtimePaths = resolveRuntimePaths(this.basePath);
+    /** @type {import('electron-store')|null} Settings store for LLM configuration */
+    this.settingsStore = settingsStore || null;
     /** @type {Map<string, {process: ChildProcess|null, status: string, pid: number|null}>} */
     this.services = new Map();
 
@@ -122,6 +128,9 @@ class ProcessManager {
       command = overrides.command || rp.python;
       args = overrides.args || definition.args;
       cwd = overrides.cwd || rp.chatCwd;
+      // Inject LLM-related env vars from settings store
+      const llmEnv = this._getLlmEnvVars();
+      Object.assign(env, llmEnv);
     } else {
       command = overrides.command || definition.command;
       args = overrides.args || definition.args;
@@ -212,6 +221,34 @@ class ProcessManager {
       result[name] = { pid: entry.pid, status: entry.status };
     }
     return result;
+  }
+
+  /**
+   * Build LLM-related environment variables from the settings store.
+   * @returns {object} Environment variable key-value pairs for the chat service
+   * @private
+   */
+  _getLlmEnvVars() {
+    if (!this.settingsStore) {
+      return { CHAT_SERVICE: 'llamacpp' };
+    }
+
+    const backend = this.settingsStore.get('llmBackend', 'llamacpp');
+    const envVars = { CHAT_SERVICE: backend };
+
+    if (backend === 'llamacpp') {
+      const modelPath = path.join(this.runtimePaths.modelsPath, 'smollm3-3b-q4_k_m.gguf');
+      envVars.LLAMACPP_MODEL_PATH = modelPath;
+      envVars.LLAMACPP_THREADS = '4';
+      envVars.LLAMACPP_CTX_SIZE = '4096';
+      log.info(`Chat service LLM env: llamacpp, model=${modelPath}`);
+    } else if (backend === 'ollama') {
+      envVars.OLLAMA_API_ENDPOINT = this.settingsStore.get('ollamaEndpoint', 'http://localhost:11434');
+      envVars.OLLAMA_MODEL_NAME = this.settingsStore.get('ollamaModel', '');
+      log.info(`Chat service LLM env: ollama, endpoint=${envVars.OLLAMA_API_ENDPOINT}, model=${envVars.OLLAMA_MODEL_NAME}`);
+    }
+
+    return envVars;
   }
 
   /** @private */
