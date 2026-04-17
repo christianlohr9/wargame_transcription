@@ -3,8 +3,25 @@ const path = require('path');
 const fs = require('fs');
 const os = require('os');
 const log = require('electron-log');
+const Store = require('electron-store');
 const { ProcessManager } = require('./processManager');
 const { HealthChecker } = require('./healthChecker');
+
+// --- Settings Store ---
+const settingsSchema = {
+  llmBackend: { type: 'string', default: 'llamacpp' },
+  ollamaEndpoint: { type: 'string', default: 'http://localhost:11434' },
+  ollamaModel: { type: 'string', default: '' },
+};
+
+const store = new Store({
+  schema: settingsSchema,
+  defaults: {
+    llmBackend: 'llamacpp',
+    ollamaEndpoint: 'http://localhost:11434',
+    ollamaModel: '',
+  },
+});
 
 let mainWindow = null;
 let processManager = null;
@@ -33,7 +50,7 @@ app.whenReady().then(() => {
   }
 
   // --- Process Manager ---
-  processManager = new ProcessManager(basePath);
+  processManager = new ProcessManager(basePath, store);
 
   // Start backend service (always on)
   processManager.startService('backend');
@@ -102,6 +119,43 @@ app.whenReady().then(() => {
       platform: process.platform,
       memory: os.totalmem(),
     };
+  });
+
+  // --- Settings IPC Handlers ---
+  const validSettingsKeys = Object.keys(settingsSchema);
+
+  ipcMain.handle('get-settings', () => {
+    const settings = {};
+    for (const key of validSettingsKeys) {
+      settings[key] = store.get(key);
+    }
+    return settings;
+  });
+
+  ipcMain.handle('get-setting', (_event, key) => {
+    if (!validSettingsKeys.includes(key)) {
+      throw new Error(`Unknown setting key: ${key}`);
+    }
+    return store.get(key);
+  });
+
+  ipcMain.handle('set-setting', async (_event, { key, value }) => {
+    if (!validSettingsKeys.includes(key)) {
+      throw new Error(`Unknown setting key: ${key}`);
+    }
+    const oldValue = store.get(key);
+    store.set(key, value);
+    log.info(`Setting changed: ${key} = ${value}`);
+
+    // Restart chat service when LLM backend changes
+    if (key === 'llmBackend' && oldValue !== value) {
+      log.info(`LLM backend changed from ${oldValue} to ${value} — restarting chat service`);
+      healthChecker.setState('chat', 'starting');
+      await processManager.stopService('chat');
+      processManager.startService('chat');
+    }
+
+    return store.get(key);
   });
 });
 
