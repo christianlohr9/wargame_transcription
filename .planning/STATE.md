@@ -9,12 +9,12 @@ See: .planning/PROJECT.md (updated 2026-04-15)
 
 ## Current Position
 
-Phase: 13 of 13 — ALL COMPLETE
-Plan: All plans complete
-Status: v2.0 Modular CPU-Only Platform — SHIPPED
-Last activity: 2026-04-15 — v2.0 milestone archived
+Phase: 14 of 14 — Guppy LLM Integration
+Plan: 1 of 5 in current phase
+Status: In progress
+Last activity: 2026-04-17 — Completed 14-01-PLAN.md
 
-Progress: ████████████████████ 100% (v1.0: 7 phases, v2.0: 6 phases — all complete)
+Progress: ████████████████████ 96% (27/28 plans complete)
 
 ## Performance Metrics
 
@@ -54,9 +54,10 @@ None.
 
 - v1.0 shipped 2026-01-25: Full local wargame analysis platform, 7 phases
 - v2.0 shipped 2026-04-15: Modular CPU-only platform, 6 phases (8-13) — zero infrastructure, Electron desktop app, portable runtimes
+- Phase 14 added 2026-04-17: Guppy LLM Integration
 
 ## Session Continuity
 
-Last session: 2026-04-15
-Stopped at: v2.0 milestone complete
-Resume file: .planning/MILESTONES.md
+Last session: 2026-04-17
+Stopped at: Completed 14-01-PLAN.md
+Resume file: .planning/phases/14-guppy-llm-integration/14-02-PLAN.md
