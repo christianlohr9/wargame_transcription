@@ -88,8 +88,9 @@ app.whenReady().then(async () => {
   });
 
   if (isDevMode()) {
-    log.info('Running in dev mode — loading from http://localhost:9003');
-    mainWindow.loadURL('http://localhost:9003');
+    const devPort = process.env.DEV_PORT || '9000';
+    log.info(`Running in dev mode — loading from http://localhost:${devPort}`);
+    mainWindow.loadURL(`http://localhost:${devPort}`);
     mainWindow.webContents.openDevTools();
   } else {
     log.info('Running in production mode — loading app://dist/');
