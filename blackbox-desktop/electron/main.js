@@ -3,26 +3,17 @@ const path = require('path');
 const fs = require('fs');
 const os = require('os');
 const log = require('electron-log');
-const Store = require('electron-store');
 const { ProcessManager } = require('./processManager');
 const { HealthChecker } = require('./healthChecker');
 
-// --- Settings Store ---
+// --- Settings Store (loaded async — electron-store v10 is ESM-only) ---
 const settingsSchema = {
   llmBackend: { type: 'string', default: 'llamacpp' },
   ollamaEndpoint: { type: 'string', default: 'http://localhost:11434' },
   ollamaModel: { type: 'string', default: '' },
 };
 
-const store = new Store({
-  schema: settingsSchema,
-  defaults: {
-    llmBackend: 'llamacpp',
-    ollamaEndpoint: 'http://localhost:11434',
-    ollamaModel: '',
-  },
-});
-
+let store = null;
 let mainWindow = null;
 let processManager = null;
 let healthChecker = null;
@@ -34,7 +25,18 @@ function isDevMode() {
   return !fs.existsSync(distIndex);
 }
 
-app.whenReady().then(() => {
+app.whenReady().then(async () => {
+  // Dynamic import for ESM-only electron-store
+  const { default: Store } = await import('electron-store');
+  store = new Store({
+    schema: settingsSchema,
+    defaults: {
+      llmBackend: 'llamacpp',
+      ollamaEndpoint: 'http://localhost:11434',
+      ollamaModel: '',
+    },
+  });
+
   const basePath = path.join(__dirname, '..');
 
   // --- Custom protocol to serve dist/ with correct MIME types ---
