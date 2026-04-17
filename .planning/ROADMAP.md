@@ -56,6 +56,6 @@ Transform the Kubernetes-deployed Blackbox AI wargaming platform into a fully lo
 | 12. Integration Testing | v2.0 | 2/2 | Complete | 2026-04-15 |
 | 13. One-Click Services | v2.0 | 7/7 | Complete | 2026-04-15 |
 
-| 14. Guppy LLM Integration | v2.0 | 3/5 | In progress | — |
+| 14. Guppy LLM Integration | v2.0 | 4/5 | In progress | — |
 
 **Total: 14 phases, 31 plans**
