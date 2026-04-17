@@ -2,17 +2,17 @@
 
 ## Project Reference
 
-See: .planning/PROJECT.md (updated 2026-04-15)
+See: .planning/PROJECT.md (updated 2026-04-17)
 
 **Core value:** One-click wargame analysis for non-technical users
-**Current focus:** v2.0 shipped — ready for Windows deployment testing
+**Current focus:** v2.1 shipped — ready for Windows deployment testing
 
 ## Current Position
 
-Phase: 14 of 14 — Guppy LLM Integration
-Plan: 5 of 5 in current phase
-Status: Phase complete
-Last activity: 2026-04-17 — Completed 14-05-PLAN.md
+Phase: 14 of 14 — all phases complete
+Plan: All plans complete
+Status: Ready to plan next milestone
+Last activity: 2026-04-17 — v2.1 Guppy LLM milestone complete
 
 Progress: ████████████████████ 100% (31/31 plans complete)
 
@@ -41,10 +41,13 @@ Progress: ████████████████████ 100% (31/
 
 All v1.0 decisions logged in PROJECT.md Key Decisions table.
 All v2.0 decisions archived in milestones/v2.0-ROADMAP.md.
+All v2.1 decisions archived in milestones/v2.1-ROADMAP.md.
 
 ### Deferred Issues
 
-None.
+- Backend JRE missing jdk.management module (pre-existing, needs fix before deployment)
+- Chat service ModuleNotFoundError for 'api' module (pre-existing import path issue)
+- Live LLM model testing deferred to target HP EliteBook deployment
 
 ### Blockers/Concerns
 
@@ -54,10 +57,10 @@ None.
 
 - v1.0 shipped 2026-01-25: Full local wargame analysis platform, 7 phases
 - v2.0 shipped 2026-04-15: Modular CPU-only platform, 6 phases (8-13) — zero infrastructure, Electron desktop app, portable runtimes
-- Phase 14 added 2026-04-17: Guppy LLM Integration
+- v2.1 shipped 2026-04-17: Guppy LLM integration, 1 phase (14) — local CPU-only LLM backend, settings UI, model bundling
 
 ## Session Continuity
 
 Last session: 2026-04-17
-Stopped at: Completed 14-05-PLAN.md — Phase 14 complete
+Stopped at: v2.1 milestone complete
 Resume file: None

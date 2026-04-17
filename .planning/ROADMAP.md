@@ -6,15 +6,14 @@ Transform the Kubernetes-deployed Blackbox AI wargaming platform into a fully lo
 
 ## Milestones
 
-- [v1.0 Local Wargame Analysis](milestones/v1.0-ROADMAP.md) (Phases 1-7) — SHIPPED 2026-01-25
-- [v2.0 Modular CPU-Only Platform](milestones/v2.0-ROADMAP.md) (Phases 8-14) — SHIPPED 2026-04-17
+- ✅ [v1.0 Local Wargame Analysis](milestones/v1.0-ROADMAP.md) (Phases 1-7) — SHIPPED 2026-01-25
+- ✅ [v2.0 Modular CPU-Only Platform](milestones/v2.0-ROADMAP.md) (Phases 8-13) — SHIPPED 2026-04-15
+- ✅ [v2.1 Guppy LLM](milestones/v2.1-ROADMAP.md) (Phase 14) — SHIPPED 2026-04-17
 
 ## Completed Milestones
 
-- [v1.0 Local Wargame Analysis](milestones/v1.0-ROADMAP.md) (Phases 1-7) — SHIPPED 2026-01-25
-
 <details>
-<summary>v1.0 Local Wargame Analysis (Phases 1-7) — SHIPPED 2026-01-25</summary>
+<summary>✅ v1.0 Local Wargame Analysis (Phases 1-7) — SHIPPED 2026-01-25</summary>
 
 - [x] Phase 1: Infrastructure (2/2 plans) — completed 2026-01-22
 - [x] Phase 2: Backend Setup (1/1 plan) — completed 2026-01-22
@@ -27,7 +26,7 @@ Transform the Kubernetes-deployed Blackbox AI wargaming platform into a fully lo
 </details>
 
 <details>
-<summary>v2.0 Modular CPU-Only Platform (Phases 8-13) — SHIPPED 2026-04-15</summary>
+<summary>✅ v2.0 Modular CPU-Only Platform (Phases 8-13) — SHIPPED 2026-04-15</summary>
 
 - [x] Phase 8: Model Research (2/2 plans) — completed 2026-04-13
 - [x] Phase 9: Model Integration (1/1 plan) — completed 2026-04-13
@@ -35,6 +34,13 @@ Transform the Kubernetes-deployed Blackbox AI wargaming platform into a fully lo
 - [x] Phase 11: Frontend Adaptation (2/2 plans) — completed 2026-04-14
 - [x] Phase 12: Integration Testing (2/2 plans) — completed 2026-04-15
 - [x] Phase 13: One-Click Services (7/7 plans) — completed 2026-04-15
+
+</details>
+
+<details>
+<summary>✅ v2.1 Guppy LLM (Phase 14) — SHIPPED 2026-04-17</summary>
+
+- [x] Phase 14: Guppy LLM Integration (5/5 plans) — completed 2026-04-17
 
 </details>
 
@@ -56,6 +62,6 @@ Transform the Kubernetes-deployed Blackbox AI wargaming platform into a fully lo
 | 12. Integration Testing | v2.0 | 2/2 | Complete | 2026-04-15 |
 | 13. One-Click Services | v2.0 | 7/7 | Complete | 2026-04-15 |
 
-| 14. Guppy LLM Integration | v2.0 | 5/5 | Complete | 2026-04-17 |
+| 14. Guppy LLM Integration | v2.1 | 5/5 | Complete | 2026-04-17 |
 
 **Total: 14 phases, 31 plans**

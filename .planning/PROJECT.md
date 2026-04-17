@@ -25,10 +25,13 @@ One-click wargame analysis for non-technical users: install, open, upload audio,
 - Electron desktop shell with process management — v2.0
 - Portable runtime bundling (jlink JRE, conda-pack Python) — v2.0
 - NSIS per-user installer for Windows — v2.0
+- Local CPU-only LLM backend (llama-cpp-python) — v2.1
+- LLM backend settings UI with llamacpp/ollama toggle — v2.1
+- LLM model bundling (SmolLM3-3B GGUF) in portable runtime — v2.1
 
 ### Active
 
-(None — v2.0 complete)
+(None — v2.1 complete)
 
 ### Out of Scope
 
@@ -41,16 +44,16 @@ One-click wargame analysis for non-technical users: install, open, upload audio,
 
 ## Context
 
-Shipped v2.0 as self-contained Electron desktop app:
+Shipped v2.1 with local LLM integration on top of v2.0 desktop app:
 - **Backend**: Spring Boot with H2 + filesystem (no Docker infrastructure)
 - **AI Services**: Python FastAPI services with portable conda-pack runtime
   - Diarization: faster-whisper large-v3-turbo + pyannote on port 8082
-  - Chat: Remote Ollama on port 8083
-- **Frontend**: Vue 3 + Quasar SPA served via Electron app:// protocol
-- **Desktop**: Electron shell with ProcessManager, health polling, service toggles
-- **Packaging**: electron-builder with NSIS per-user installer, jlink JRE, conda-pack Python
+  - Chat: LlamaCpp (local CPU) or remote Ollama on port 8083, selectable via settings
+- **Frontend**: Vue 3 + Quasar SPA served via Electron app:// protocol, settings panel for LLM backend
+- **Desktop**: Electron shell with ProcessManager, health polling, service toggles, electron-store settings
+- **Packaging**: electron-builder with NSIS per-user installer, jlink JRE, conda-pack Python + llama-cpp-python
 
-Tech stack: Spring Boot, H2, Vue 3, Quasar, Electron, FastAPI, faster-whisper, pyannote, Ollama, pdfmake, docx.
+Tech stack: Spring Boot, H2, Vue 3, Quasar, Electron, FastAPI, faster-whisper, pyannote, llama-cpp-python, Ollama, pdfmake, docx.
 
 ## Key Decisions
 
@@ -67,6 +70,11 @@ Tech stack: Spring Boot, H2, Vue 3, Quasar, Electron, FastAPI, faster-whisper, p
 | jlink + conda-pack | Portable runtimes, no system install needed | Good |
 | NSIS per-user installer | No admin rights required | Good |
 | @Lazy for circular dependency | AnalysisService only used in @Async method | Good |
+| hasattr feature detection for health | Avoids importing llama_cpp when other backends active | Good |
+| Lazy import in backend factory | Prevents loading llama_cpp module when not needed | Good |
+| electron-store for LLM settings | Persistent backend selection without file-based config | Good |
+| Dynamic import() for electron-store | ESM-only package in CJS Electron main process | Good |
+| SmolLM3-3B Q4_K_M GGUF | Small enough for 16GB RAM, good quality for summarization | Pending |
 
 ## Constraints
 
@@ -77,4 +85,4 @@ Tech stack: Spring Boot, H2, Vue 3, Quasar, Electron, FastAPI, faster-whisper, p
 - **No external APIs**: All processing local (except optional remote Ollama)
 
 ---
-*Last updated: 2026-04-15 after v2.0 milestone*
+*Last updated: 2026-04-17 after v2.1 milestone*
