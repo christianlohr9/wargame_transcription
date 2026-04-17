@@ -7,7 +7,7 @@ Transform the Kubernetes-deployed Blackbox AI wargaming platform into a fully lo
 ## Milestones
 
 - [v1.0 Local Wargame Analysis](milestones/v1.0-ROADMAP.md) (Phases 1-7) — SHIPPED 2026-01-25
-- [v2.0 Modular CPU-Only Platform](milestones/v2.0-ROADMAP.md) (Phases 8-14) — In Progress
+- [v2.0 Modular CPU-Only Platform](milestones/v2.0-ROADMAP.md) (Phases 8-14) — SHIPPED 2026-04-17
 
 ## Completed Milestones
 
@@ -56,6 +56,6 @@ Transform the Kubernetes-deployed Blackbox AI wargaming platform into a fully lo
 | 12. Integration Testing | v2.0 | 2/2 | Complete | 2026-04-15 |
 | 13. One-Click Services | v2.0 | 7/7 | Complete | 2026-04-15 |
 
-| 14. Guppy LLM Integration | v2.0 | 4/5 | In progress | — |
+| 14. Guppy LLM Integration | v2.0 | 5/5 | Complete | 2026-04-17 |
 
 **Total: 14 phases, 31 plans**
